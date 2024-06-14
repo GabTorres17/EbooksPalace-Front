@@ -1,0 +1,41 @@
+.detalle-producto {
+    display: flex;
+    background-color: #f2f2f2; /* Fondo gris claro */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.imagen {
+    flex: 1;
+    width: 100%;
+    display: block;
+    margin-left: 15%;
+}
+
+.info {
+    flex: 1;
+    padding: 20px;
+}
+
+.info h2 {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.info p {
+    margin-bottom: 200px;
+}
+
+.info button {
+    padding: 10px 20px;
+    background-color: #150B2D;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.info button:hover {
+    background-color: #3521a3;
+}
