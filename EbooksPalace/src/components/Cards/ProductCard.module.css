@@ -1,0 +1,40 @@
+/* src/components/ProductCard.module.css */
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 300px;
+    height: 150px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 16px;
+    display: flex;
+  }
+  
+  .image {
+    width: 60%;
+    height: 130px;
+    border-radius: 4px;
+  }
+  
+  .details {
+    padding: 5px 0;
+  }
+  
+  .name {
+    font-size:16px;
+    margin: 8px 0;
+  }
+  
+  .detail {
+    color: #555;
+    margin: 8px 0;
+  }
+  
+  .price {
+    font-size: 1.2em;
+    color: #009688;
+    margin: 8px 0;
+  }
+  

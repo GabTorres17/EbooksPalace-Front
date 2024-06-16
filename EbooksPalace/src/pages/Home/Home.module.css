@@ -1,0 +1,24 @@
+/* Home.module.css */
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .card h1 {
+    color: #333;
+  }
+  
+  .card h5 {
+    color: #666;
+  }
+  
+  .card h3 {
+    color: #009688;
+  }
+  
