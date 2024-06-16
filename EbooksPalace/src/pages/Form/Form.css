@@ -1,10 +1,12 @@
 .contenedor {
-    background-color: #f2f2f2; /* Fondo gris claro */
+    background-color: #f2f2f2;
+    /* Fondo gris claro */
     padding: 20px;
 }
 
 .formulario {
-    background-color: #fff; /* Fondo blanco */
+    background-color: #fff;
+    /* Fondo blanco */
     padding: 20px;
     border-radius: 5px;
 }
@@ -14,10 +16,11 @@
 }
 
 .campo label {
-    display: block;
+    display: flex;
     margin-bottom: 5px;
     border-radius: 8px;
 }
+
 .campo input[type="text"],
 .campo textarea,
 .campo input[type="file"] {
@@ -30,12 +33,15 @@
 .campo::placeholder {
     color: #9e9ea7;
 }
-.campo:focus, .campo:hover {
+
+.campo:focus,
+.campo:hover {
     outline: none;
-    border-color: rgba(234,76,137,0.4);
+    border-color: rgba(234, 76, 137, 0.4);
     background-color: #fff;
     box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
 }
+
 .boton {
     text-align: center;
 }

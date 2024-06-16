@@ -47,9 +47,9 @@ export default function validate(input) {
 
     if (input.image && input.image.trim() !== "") {
         const urlRegexp = /^(ftp|http|https):\/\/[^ "]+$/;
-
         if (!urlRegexp.test(input.image)) errors.image = "Debe ingresar una URL válida de imagen";
     }
+
 
     if (!input.description) {
         errors.description = "Debe ingresar la descripción del libro"

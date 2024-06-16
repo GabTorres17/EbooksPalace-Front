@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Form.css';
+/* import './Form.css'; */
 import validate from "./validate"
 import NavBar from '../../components/Nav/Nav'
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +20,21 @@ const Form = () => {
 
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
+    const [URL_Image, setURL_Image] = useState("");
+    const deleteImage = () => {
+        setURL_Image("");
+    }
+
+    const changeUploadImage = async (e) => {
+        const file = e.target.files[0];
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "ebookspalace_preset");
+
+        const response = await axios.post("https://api.cloudinary.com/v1_1/dwxr0uihx/image/upload", data)
+        console.log(response.data)
+        setURL_Image(response.data.secure_url)
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,6 +46,7 @@ const Form = () => {
         setErrors(validate({
             ...input,
             [name]: value,
+            image: URL_Image,
         }));
     };
 
@@ -38,12 +54,17 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationErrors = validate(input);
+        const validationErrors = validate({ ...input, image: URL_Image });
         setErrors(validationErrors)
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await axios.post("http://localhost:3001/books", input);
+
+                const formData = {
+                    ...input,
+                    image: URL_Image,
+                };
+                const response = await axios.post("http://localhost:3001/books", formData);
 
                 if (response.status === 200) {
                     console.log("Libro creado con exito", response.data);
@@ -101,10 +122,16 @@ const Form = () => {
                         <textarea name="description" value={input.description} onChange={handleChange}></textarea>
                         {errors.description && <p>{errors.description}</p>}
                     </div>
-                    <label>Imagen URL:</label>
+                    <label>Imagen por cloudinary:</label>
                     <div className="campo">
-                        <input type="text" value={input.image} name="image" onChange={handleChange} />
+                        <input type="file" accept="image/*" name="image" onChange={changeUploadImage} />
                         {errors.image && <p>{errors.image}</p>}
+                        {URL_Image && (
+                            <div>
+                                <img src={URL_Image} />
+                                <button onClick={() => deleteImage()}>Eliminar Imagen</button>
+                            </div>
+                        )}
                     </div>
                     <label>Archivo URL:</label>
                     <div className='campo'>
