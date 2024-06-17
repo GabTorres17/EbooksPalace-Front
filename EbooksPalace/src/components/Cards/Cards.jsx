@@ -10,23 +10,25 @@ const Cards = () => {
   const productsPerPage = 6;
   const [totalPages, setTotalPages] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get('http://localhost:3001/books', {
-          params: {
-            page: currentPage,
-            productsByPage: productsPerPage,
-            order: 'order', 
-            sort: 'sort' 
-          }
-        });
-        setInfo(data.books);
-        setTotalPages(data.totalPages);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
+  const fetchData = async (params = {}) => {
+    const queryParams = {
+      page: currentPage,
+      productsByPage: productsPerPage,
+      ...params,
     };
+
+    try {
+      const { data } = await axios.get('http://localhost:3001/books', {
+        params: queryParams
+      });
+      setInfo(data.books);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, [currentPage]);
 
@@ -92,5 +94,4 @@ const Cards = () => {
 };
 
 export default Cards;
-
 
