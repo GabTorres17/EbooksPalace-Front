@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
+import Filters from '../Filters/Filters';
 import styles from './Cards.module.css';
 
 const Cards = () => {
@@ -30,6 +31,12 @@ const Cards = () => {
   useEffect(() => {
     fetchData();
   }, [currentPage]);
+
+  const handleFilter = (filteredBooks) => {
+    setInfo(filteredBooks.books);
+    setTotalPages(filteredBooks.totalPages);
+    setCurrentPage(1);
+  };
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -61,6 +68,7 @@ const Cards = () => {
 
   return (
     <div className={styles.cardList}>
+        <Filters onFilter={handleFilter} />
       <div className={styles.cardsContainer}>
         {info.map((book) => (
           <ProductCard

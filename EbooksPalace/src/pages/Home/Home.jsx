@@ -6,19 +6,10 @@ import './Home.css';
 
 const Home = () => {
 
-  const handleFilter = (filteredBooks) => {
-    setInfo(filteredBooks.books);
-    setTotalPages(filteredBooks.totalPages);
-    setCurrentPage(1);
-  };
-
   return (
     <div>
       <NavBar />
-      <div className="home-container">
-        <Filters onFilter={handleFilter} />
-        <Cards />
-      </div>
+      <Cards />
     </div>
   )
 
