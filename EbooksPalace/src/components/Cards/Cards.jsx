@@ -1,38 +1,40 @@
-import ProductCard from './ProductCard';
-import styles from './Cards.module.css'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import ProductCard from './ProductCard';
+import styles from './Cards.module.css';
 
+const Cards = () => {
+  const [info, setInfo] = useState([]);
 
- const Cards = () => {
-  const [Info, setInfo ] = useState([])
-  useEffect(async()=>{
-    const {data} = await axios.get("http://localhost:3001/books");
-    console.log(data);
-    setInfo(data)
-  },[])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3001/books`);
+        setInfo(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+    fetchData();
+  }, []);
 
-
-  
-
-   return <div className={styles.Cards}>
-         {Info.map((data)=>{
-          console.log(data);
-           <ProductCard
-           id={data.id}
-           name={data.name}
-           author={data.author}
-           editorial={data.editorial}
-           price={data.price}
-           category={data.category}  
-           image={data.image}
-           dresciption={data.dresciption}
-          /> 
-
-         })}   
-          
-    
-   </div>;
-   }
+  return (
+    <div className={styles.cards}>
+      {info.map((book) => (
+        <ProductCard
+          key={book.id}
+          id={book.id}
+          name={book.name}
+          author={book.author}
+          editorial={book.editorial}
+          price={book.price}
+          category={book.category}
+          image={book.image}
+          description={book.description}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default Cards;
