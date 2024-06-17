@@ -18,8 +18,7 @@ body {
 }
 
 .logo {
-    height: 40px;
-    /* Ajusta el tamaño del logo según sea necesario */
+    height: 100px;
 }
 
 .search-bar {
@@ -32,7 +31,7 @@ body {
 
 .shopping-cart {
     height: 30px;
-    /* Ajusta el tamaño del icono del carrito según sea necesario */
+    background-color: white;
 }
 
 .navbar-center {

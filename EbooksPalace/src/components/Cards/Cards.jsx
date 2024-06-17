@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductCard from './ProductCard';
 import styles from './Cards.module.css';
-import Filters from '../Filters/Filters';
 
 const Cards = () => {
   const [info, setInfo] = useState([]);
@@ -31,12 +30,6 @@ const Cards = () => {
   useEffect(() => {
     fetchData();
   }, [currentPage]);
-
-  const handleFilter = (filteredBooks) => {
-    setInfo(filteredBooks.books);
-    setTotalPages(filteredBooks.totalPages);
-    setCurrentPage(1);
-  };
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -67,9 +60,8 @@ const Cards = () => {
   };
 
   return (
-    <div>
-      <Filters onFilter={handleFilter} />
-      <div className={styles.cards}>
+    <div className={styles.cardList}>
+      <div className={styles.cardsContainer}>
         {info.map((book) => (
           <ProductCard
             key={book.id}
@@ -83,11 +75,12 @@ const Cards = () => {
             description={book.description}
           />
         ))}
-        <div className={styles.pagination}>
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>Anterior</button>
-          {renderPagination()}
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>Siguiente</button>
-        </div>
+      </div>
+
+      <div className={styles.pagination}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>Anterior</button>
+        {renderPagination()}
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>Siguiente</button>
       </div>
     </div>
   );
