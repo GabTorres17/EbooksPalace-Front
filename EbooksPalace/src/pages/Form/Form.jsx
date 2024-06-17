@@ -29,9 +29,9 @@ const Form = () => {
         const file = e.target.files[0];
         const data = new FormData();
         data.append("file", file);
-        data.append("upload_preset", "ebookspalace_preset");
+        data.append("upload_preset", "preset_plantech");
 
-        const response = await axios.post("https://api.cloudinary.com/v1_1/dwxr0uihx/image/upload", data)
+        const response = await axios.post("https://api.cloudinary.com/v1_1/dpczn5w72/image/upload", data)
         console.log(response.data)
         setURL_Image(response.data.secure_url)
     }

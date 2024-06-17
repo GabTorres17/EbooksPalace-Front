@@ -46,3 +46,10 @@
   -webkit-line-clamp: 3; 
   -webkit-box-orient: vertical;
 }
+
+.Info{
+  padding: 4px;
+  color: bisque;
+
+  background-color: #007bff;
+}

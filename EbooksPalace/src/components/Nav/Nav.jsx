@@ -20,6 +20,12 @@ const NavBar = () => {
                     <img src={logo} alt="Logo" className="logo" />
                 </Link>
             </div>
+
+            <div className="navbar-left">
+                <Link to="/home">
+                    <button>home</button> 
+                </Link>
+            </div>
             <SearchBar />
             <div className="dropdown">
                 <button onClick={toggleDropdown} className="dropdown-toggle">
