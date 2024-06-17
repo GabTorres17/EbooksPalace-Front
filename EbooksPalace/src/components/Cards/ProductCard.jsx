@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ProductCard.module.css';
 import { Link } from 'react-router-dom';
 const ProductCard = ({ id, name, author, editorial, price, category, image, description }) => {
+ console.log(image);
   return (
     <div className={styles.card} key={id}>
       <img src={image} alt={name} className={styles.image} />
@@ -12,7 +13,7 @@ const ProductCard = ({ id, name, author, editorial, price, category, image, desc
         <p className={styles.category}>{category}</p>
         <p className={styles.price}>${price}</p>
         <p className={styles.description}>{description}</p>
-        <Link className={styles.Info} to="/detail">Mas info</Link>
+        <Link className={styles.Info} to={`/detail/${id}`} >Mas info</Link>
       </div>
     </div>
   );
