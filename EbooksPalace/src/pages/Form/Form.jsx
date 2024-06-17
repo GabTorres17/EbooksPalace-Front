@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-/* import './Form.css'; */
+import './Form.css';
 import validate from "./validate"
 import NavBar from '../../components/Nav/Nav'
 import { useNavigate } from 'react-router-dom';
@@ -84,15 +84,15 @@ const Form = () => {
             <NavBar />
             <div className="contenedor">
                 <form onSubmit={handleSubmit} className="formulario">
-                    <h2>Formulario de Libro</h2>
+                    <h2 className="title">Formulario de Libro</h2>
                     <label>Título:</label>
                     <div className="campo">
-                        <input type="text" name="name" value={input.name} onChange={handleChange} />
+                        <input type="text" placeholder="Ej: Romeo y Julieta" name="name" value={input.name} onChange={handleChange} />
                         {errors.name && <p>{errors.name}</p>}
                     </div>
                     <label>Editorial:</label>
                     <div className="campo">
-                        <input type="text" name="editorial" value={input.editorial} onChange={handleChange} />
+                        <input type="text" placeholder="Ej: San Andrés" name="editorial" value={input.editorial} onChange={handleChange} />
                         {errors.editorial && <p>{errors.editorial}</p>}
                     </div>
                     <label>Género:</label>
@@ -109,7 +109,7 @@ const Form = () => {
                     </div>
                     <label>Autor:</label>
                     <div className="campo">
-                        <input type="text" name="author" value={input.author} onChange={handleChange} />
+                        <input type="text" placeholder="Ej: William Shakespeare" name="author" value={input.author} onChange={handleChange} />
                         {errors.author && <p>{errors.author}</p>}
                     </div>
                     <label>Precio:</label>
@@ -119,10 +119,10 @@ const Form = () => {
                     </div>
                     <label>Descripción:</label>
                     <div className="campo">
-                        <textarea name="description" value={input.description} onChange={handleChange}></textarea>
+                        <textarea name="description" placeholder="Ej: En el último día de un helado junio..." value={input.description} onChange={handleChange}></textarea>
                         {errors.description && <p>{errors.description}</p>}
                     </div>
-                    <label>Imagen por cloudinary:</label>
+                    <label>Imagen:</label>
                     <div className="campo">
                         <input type="file" accept="image/*" name="image" onChange={changeUploadImage} />
                         {errors.image && <p>{errors.image}</p>}
