@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ProductCard.module.css';
 import { Link } from 'react-router-dom';
+
 const ProductCard = ({ id, name, author, editorial, price, category, image, description }) => {
   return (
     <Link className={styles.Info} to={`/detail/${id}`}>
