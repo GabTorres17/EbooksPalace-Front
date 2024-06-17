@@ -68,7 +68,9 @@ const Cards = () => {
 
   return (
     <div className={styles.cardList}>
+      <div className={styles.filterContainer}>
         <Filters onFilter={handleFilter} />
+      </div>
       <div className={styles.cardsContainer}>
         {info.map((book) => (
           <ProductCard
@@ -95,4 +97,3 @@ const Cards = () => {
 };
 
 export default Cards;
-
