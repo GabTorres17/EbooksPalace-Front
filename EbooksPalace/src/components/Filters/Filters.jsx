@@ -5,8 +5,8 @@ const Filters = ({ onFilter }) => {
     const [author, setAuthor] = useState('');
     const [category, setCategory] = useState('');
     const [editorial, setEditorial] = useState('');
-    const [order, setOrder] = useState('order');
-    const [sort, setSort] = useState('sort');
+    const [order, setOrder] = useState('');
+    const [sort, setSort] = useState('');
   
     const handleSubmit = async (e) => {
       e.preventDefault();

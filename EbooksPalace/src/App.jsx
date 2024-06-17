@@ -12,9 +12,9 @@ function App() {
     <>
       <div>
         <Routes>
-          <Route path='/home' element={<Home/>}/>
-          <Route path='/detail' element={<Detail/>}/>
           <Route path='/' element={<Landing/>}/>
+          <Route path='/home' element={<Home/>}/>
+          <Route path='/detail/:id' element={<Detail/>}/>
           <Route path='/form' element={<Form/>}/>
         </Routes>
       </div>
