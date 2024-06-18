@@ -67,8 +67,9 @@ const Cards = () => {
   };
 
   return (
+    <div className={styles.home}>
+      <Filters onFilter={handleFilter} />
     <div className={styles.cardList}>
-        <Filters onFilter={handleFilter} />
       <div className={styles.cardsContainer}>
         {info.map((book) => (
           <ProductCard
@@ -90,6 +91,7 @@ const Cards = () => {
         {renderPagination()}
         <button onClick={handleNextPage} disabled={currentPage === totalPages}>Siguiente</button>
       </div>
+    </div>
     </div>
   );
 };
