@@ -10,9 +10,9 @@ function UpLoadImage() {
         const data = new FormData();
 
         data.append("file", file)
-        data.append("upload_preset", "preset_plantech")
+        data.append("upload_preset", "ebookspalace_preset")
 
-        const response = await axios.post("https://api.cloudinary.com/v1_1/dpczn5w72/image/upload", data)
+        const response = await axios.post("https://api.cloudinary.com/v1_1/dwxr0uihx/image/upload", data)
 
         setUrlImage(response.data.secure_url)
     }
