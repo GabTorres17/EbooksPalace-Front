@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './Form.css';
 import validate from "./validate"
 import NavBar from '../../components/Nav/Nav'
@@ -21,19 +21,37 @@ const Form = () => {
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
     const [URL_Image, setURL_Image] = useState("");
+    const fileInputRef = useRef(null)
+
     const deleteImage = () => {
         setURL_Image("");
-    }
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    };
 
     const changeUploadImage = async (e) => {
+        if (URL_Image) {
+            alert("Primero elimine la imagen actual antes de subir una nueva.");
+            return;
+        }
+
         const file = e.target.files[0];
         const data = new FormData();
         data.append("file", file);
-        data.append("upload_preset", "preset_plantech");
+        data.append("upload_preset", "ebookspalace_preset");
 
-        const response = await axios.post("https://api.cloudinary.com/v1_1/dpczn5w72/image/upload", data)
-        console.log(response.data)
-        setURL_Image(response.data.secure_url)
+        try {
+            const response = await axios.post("https://api.cloudinary.com/v1_1/dwxr0uihx/image/upload", data)
+            console.log(response.data)
+            setURL_Image(response.data.secure_url)
+            setErrors((prevErrors) => {
+                const { image, ...rest } = prevErrors;
+                return rest;
+            });
+        } catch (error) {
+            console.error("Error al subir la imagen", error);
+        }
     }
 
     const handleChange = (e) => {
@@ -124,12 +142,12 @@ const Form = () => {
                     </div>
                     <label>Imagen:</label>
                     <div className="campo">
-                        <input type="file" accept="image/*" name="image" onChange={changeUploadImage} />
+                        <input type="file" accept="image/*" name="image" onChange={changeUploadImage} disabled={!!URL_Image} ref={fileInputRef} />
                         {errors.image && <p>{errors.image}</p>}
                         {URL_Image && (
-                            <div>
-                                <img src={URL_Image} />
-                                <button onClick={() => deleteImage()}>Eliminar Imagen</button>
+                            <div className='image-div'>
+                                <img className="uploaded-image" src={URL_Image} />
+                                <button type="button" onClick={() => deleteImage()}>Eliminar Imagen</button>
                             </div>
                         )}
                     </div>

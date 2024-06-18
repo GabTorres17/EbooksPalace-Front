@@ -4,7 +4,8 @@ export default function validate(input) {
     if (!input.name.length) {
         errors.name = "Debe ingresar un nombre para el libro"
     } else {
-        const alphanumericSymbolRegexp = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\s]*$/;
+        const alphanumericSymbolRegexp = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\sáéíóúÁÉÍÓÚñÑüÜ]*$/;
+
 
         if (!alphanumericSymbolRegexp.test(input.name)) errors.name = "El nombre colocado tiene caracteres no permitidos"
     }
@@ -57,6 +58,10 @@ export default function validate(input) {
         if (input.description.length > 1000) {
             errors.description = "La descripción del libro no puede ser mayor a 1000 caracteres";
         }
+    }
+
+    if (!input.image) {
+        errors.image = "Debe ingresar una imagen para el nuevo libro"
     }
 
     if (!input.file) {
