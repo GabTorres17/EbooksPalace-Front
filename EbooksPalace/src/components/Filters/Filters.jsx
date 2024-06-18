@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Filters.css'
+import './Filters.css';
 
 const Filters = ({ onFilter }) => {
-    const [author, setAuthor] = useState('');
+
     const [category, setCategory] = useState('');
-    const [editorial, setEditorial] = useState('');
     const [order, setOrder] = useState('');
     const [sort, setSort] = useState('');
   
@@ -14,9 +13,7 @@ const Filters = ({ onFilter }) => {
 
       const params = {};
 
-      if (author) params.author = author;
       if (category) params.category = category;
-      if (editorial) params.editorial = editorial;
       if (order) params.order = order;
       if (sort) params.sort = sort;
 
@@ -32,11 +29,6 @@ const Filters = ({ onFilter }) => {
       <div className="filter-form-container">
       <form onSubmit={handleSubmit} className="filter-form">
         <label>
-          Autor:
-          <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
-        </label>
-        <br />
-        <label>
           Categoría:
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="Category">Categorías...</option>
@@ -46,11 +38,6 @@ const Filters = ({ onFilter }) => {
             <option value="Education">Education</option>
             <option value="Self-Help">Self-Help</option>
           </select>
-        </label>
-        <br />
-        <label>
-          Editorial:
-          <input type="text" value={editorial} onChange={(e) => setEditorial(e.target.value)} />
         </label>
         <br />
         <label>
