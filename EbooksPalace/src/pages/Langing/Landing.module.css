@@ -1,0 +1,49 @@
+.contenedor{
+    margin: 0%;
+}
+
+
+
+
+.img{
+    width: 100%;
+    height: 500px;
+    
+}
+
+.img2{
+    width: 100%;
+    height: 500px;
+}
+
+.img3{
+    width: 25%;
+    height: 350px;
+}
+.contenedorexterno {
+    display: flex;
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor en la página */
+    flex: 1; /* Hace que las columnas se distribuyan uniformemente */
+    background-color: #f2f2f2; /* Color de fondo */
+    padding: 20px;
+    
+}
+
+.contenedor2 {
+    background-color: #d3d3d3; /* Gris */
+    width: 300px; /* Ajusta el tamaño según lo necesites */
+    height: 300px; /* Ajusta el tamaño según lo necesites */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto; /* Centra el contenedor en la página */
+    max-width: 100%; /* Asegura que la imagen no sea más grande que el contenedor */
+    height: auto;
+    margin-top: 10px; /* Espacio entre la imagen y el título */
+    font-size: 1.5em; /* Ajusta el tamaño de la fuente según lo necesites */
+    color: #333; /* Color del texto */
+}
+
