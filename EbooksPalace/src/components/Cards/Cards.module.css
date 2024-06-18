@@ -1,17 +1,36 @@
-.cardList {
+.home {
+  display: flex;
+}
 
+.cardList {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 
   margin: 60px;
 }
 
 .cardsContainer {
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  /* This enables wrapping to multiple rows */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Tres columnas en desktop */
+  gap: 20px;
+  margin-top: 20px;
 }
 
+@media (max-width: 992px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+    /* Dos columnas en tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    /* Una columna en dispositivos pequeños */
+  }
+}
 
 .pagination {
   display: flex;
