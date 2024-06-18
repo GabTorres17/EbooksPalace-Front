@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Filters.css'
+import './Filters.css';
 
 const Filters = ({ onFilter }) => {
     const [author, setAuthor] = useState('');
