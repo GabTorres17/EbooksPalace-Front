@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './NavBar.css';
 import logo from '../Images/logo.png';
 import carrito from '../Images/carrito.png';
 import SearchBar from '../SearchBar/SearchBar';
-import { BookContext } from '../../BookContext';
+import { searchBooks } from '../../redux/actions';
 
 const NavBar = () => {
+  
+  const dispatch = useDispatch();
 
-    const { handleSearch } = useContext(BookContext);
+  const handleSearch = (query) => {
+    dispatch(searchBooks(query));
+  };
 
   return (
     <nav className="navbar">

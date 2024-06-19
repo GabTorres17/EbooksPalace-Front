@@ -1,37 +1,48 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchBooks } from '../../redux/actions';
 import './Filters.css';
 
-const Filters = ({ onFilter }) => {
+const Filters = () => {
+  const [category, setCategory] = useState('');
+  const [order, setOrder] = useState('');
+  const [sort, setSort] = useState('');
+  const dispatch = useDispatch();
 
-    const [category, setCategory] = useState('');
-    const [order, setOrder] = useState('');
-    const [sort, setSort] = useState('');
+  useEffect(() => {
+    
+    const params = {};
+
+    if (category) params.category = category;
+    if (order) params.order = order;
+    if (sort) params.sort = sort;
   
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+    dispatch(fetchBooks(params));
+  }, [category, order, sort, dispatch]);
 
-      const params = {};
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+    setSort(''); 
+    setOrder(''); 
+  };
 
-      if (category) params.category = category;
-      if (order) params.order = order;
-      if (sort) params.sort = sort;
+  const handleOrderChange = (e) => {
+    setOrder(e.target.value);
+    setSort(''); 
+  };
 
-      try {
-        const { data } = await axios.get(`http://localhost:3001/books`, {params});
-        onFilter(data);
-      } catch (error) {
-        console.error('Error fetching filtered books:', error);
-      }
-    };
-  
-    return (
-      <div className="filter-form-container">
-      <form onSubmit={handleSubmit} className="filter-form">
+  const handleSortChange = (e) => {
+    setSort(e.target.value);
+    setOrder(''); 
+  };
+
+  return (
+    <div className="filter-form-container">
+      <form className="filter-form">
         <label>
           Categoría:
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="Category">Categorías...</option>
+          <select value={category} onChange={handleCategoryChange}>
+            <option value="">Categorías...</option>
             <option value="Terror">Terror</option>
             <option value="Comedy">Comedy</option>
             <option value="Romance">Romance</option>
@@ -41,9 +52,9 @@ const Filters = ({ onFilter }) => {
         </label>
         <br />
         <label>
-          Alfabetico:
-          <select value={order} onChange={(e) => setOrder(e.target.value)}>
-            <option value="order">Alfabético...</option>
+          Alfabético:
+          <select value={order} onChange={handleOrderChange}>
+            <option value="">Alfabético...</option>
             <option value="asc">Z - A</option>
             <option value="desc">A - Z</option>
           </select>
@@ -51,18 +62,15 @@ const Filters = ({ onFilter }) => {
         <br />
         <label>
           Precio:
-          <select value={sort} onChange={(e) => setSort(e.target.value)}>
-            <option value="sort">Precio...</option>
+          <select value={sort} onChange={handleSortChange}>
+            <option value="">Precio...</option>
             <option value="asc">Precio Menor</option>
             <option value="desc">Precio Mayor</option>
           </select>
         </label>
-        <br />
-        <button type="submit">Filtrar Libros</button>
       </form>
     </div>
-    );
-  };
-  
-  export default Filters;
-  
+  );
+};
+
+export default Filters;

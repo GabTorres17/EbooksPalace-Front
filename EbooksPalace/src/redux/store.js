@@ -1,7 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import propertiesReducer from './reducer'
-export default configureStore({
-  reducer:{
-    properties: propertiesReducer
-  },
-})
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { thunk } from 'redux-thunk';
+import booksReducer from './reducers';
+
+const rootReducer = combineReducers({
+  books: booksReducer,
+});
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+export default store;
