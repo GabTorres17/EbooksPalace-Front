@@ -5,7 +5,6 @@ import './NavBar.css';
 import logo from '../Images/logo.png';
 import carrito from '../Images/carrito.png';
 import SearchBar from '../SearchBar/SearchBar';
-import { BookContext } from '../../BookContext';
 import { LoginButton } from '../Login/Login';
 import { Profile } from '../Profile/Profile';
 import { LogoutButton } from '../Logout/Logout';
