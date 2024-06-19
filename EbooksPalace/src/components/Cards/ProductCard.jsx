@@ -1,24 +1,30 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/actions';
 import styles from './ProductCard.module.css';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ id, name, author, editorial, price, category, image, description }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ name, price, quantity: 1 }));
+  };
+
   return (
-    <Link className={styles.Info} to={`/detail/${id}`}>
-      <div className={styles.card} key={id}>
-        <img src={image} alt={name} className={styles.image} />
+
+    <div className={styles.card}>
+      <Link className={styles.Info} to={`/detail/${id}`}>
+        <img src={image} alt={name} />
         <div className={styles.details}>
-          <h2 className={styles.name}>{name}</h2>
-          {/* <p className={styles.author}>by {author}</p>
-          <p className={styles.editorial}>{editorial}</p> */}
-          {/* <p className={styles.category}>{category}</p> */}
-          <p className={styles.price}>${price}</p>
-          {/* <p className={styles.description}>{description}</p> */}
+          <h3>{name}</h3>
+          <p>{price}</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+      
+      <Link to="/cartbuy" ><button onClick={handleAddToCart}>Add to Cart</button></Link>
+    </div>
   );
 };
 
 export default ProductCard;
-
