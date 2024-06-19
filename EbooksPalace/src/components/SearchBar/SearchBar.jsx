@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import './SearchBar.css';
+import { searchBooks } from '../../redux/actions';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [searchType, setSearchType] = useState('name');
   const [searchValue, setSearchValue] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log('Form submitted');
-
-    const params = {};
-    if (searchValue) {
-      params[searchType] = searchValue;
-    }
-    // console.log('Params:', params);
     try {
-      const { data } = await axios.get('http://localhost:3001/books', { params });
-    //   console.log('Data received:', data);
-      onSearch(data);
+      const query = { [searchType]: searchValue };
+      dispatch(searchBooks(query));
     } catch (error) {
-      console.error('Error fetching filtered books:', error);
+      console.error('Error searching books:', error);
     }
   };
 
