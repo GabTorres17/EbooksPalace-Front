@@ -7,6 +7,8 @@ const Filters = () => {
   const [category, setCategory] = useState('');
   const [order, setOrder] = useState('');
   const [sort, setSort] = useState('');
+  const [minimo, setMinimo] = useState('');
+  const [maximo, setMaximo] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,9 +18,12 @@ const Filters = () => {
     if (category) params.category = category;
     if (order) params.order = order;
     if (sort) params.sort = sort;
+    if (minimo) params.minimo = minimo;
+    if (maximo) params.maximo = maximo;
+
   
     dispatch(fetchBooks(params));
-  }, [category, order, sort, dispatch]);
+  }, [category, order, sort, minimo, maximo, dispatch]);
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
@@ -36,9 +41,37 @@ const Filters = () => {
     setOrder(''); 
   };
 
+  const handleMinimoChange = (e) => {
+    setMinimo(e.target.value);
+  };
+
+  const handleMaximoChange = (e) => {
+    setMaximo(e.target.value);
+  };
+
   return (
     <div className="filter-form-container">
       <form className="filter-form">
+        <label>
+          Precio Mínimo:
+          <input
+            type="number"
+            value={minimo}
+            onChange={handleMinimoChange}
+            placeholder="Mínimo"
+          />
+        </label>
+        <br />
+        <label>
+          Precio Máximo:
+          <input
+            type="number"
+            value={maximo}
+            onChange={handleMaximoChange}
+            placeholder="Máximo"
+          />
+        </label>
+        <br />
         <label>
           Categoría:
           <select value={category} onChange={handleCategoryChange}>
