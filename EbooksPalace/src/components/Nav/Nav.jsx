@@ -37,7 +37,7 @@ const NavBar = () => {
         </> : <LoginButton />}
       </div>
       <div className="navbar-right">
-        <img src={carrito} alt="Carrito de Compras" className="shopping-cart" />
+        <Link to="/cartbuy"><img src={carrito} alt="Carrito de Compras" className="shopping-cart" /></Link>
       </div>
     </nav>
   );
