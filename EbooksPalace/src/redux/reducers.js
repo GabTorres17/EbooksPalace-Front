@@ -1,6 +1,21 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART } from './actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART, SET_USER_PROFILE } from './actions';
 
-const initialCartState = [];
+const initialState = {
+  cartBuy: [],
+  userProfile: null
+};
+
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 const cartReducer = (state = initialCartState, action) => {
   switch (action.type) {
@@ -29,6 +44,4 @@ const cartReducer = (state = initialCartState, action) => {
   }
 };
 
-
-
-export { cartReducer };
+export { cartReducer, userReducer }

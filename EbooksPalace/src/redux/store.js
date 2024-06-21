@@ -1,9 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { thunk } from 'redux-thunk';
-import { cartReducer } from './reducers'; 
+import { cartReducer, userReducer } from './reducers';
 
 const rootReducer = combineReducers({
-  cart: cartReducer
+  cart: cartReducer,
+  user: userReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
