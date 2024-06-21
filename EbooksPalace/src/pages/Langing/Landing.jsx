@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchBar from '../../components/SearchBar/SearchBar'
+// import SearchBar from '../../components/SearchBar/SearchBar'
 import foto1 from '../../components/Images/foto1.jpg'
 import foto3 from '../../components/Images/foto3.jpg'
 import portada from '../../components/Images/portada.png'
