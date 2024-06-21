@@ -13,7 +13,8 @@ import { searchBooks } from '../../redux/actions';
 
 
 const NavBar = () => {
-  
+
+
   const dispatch = useDispatch();
 
   const { isAuthenticated } = useAuth0();
