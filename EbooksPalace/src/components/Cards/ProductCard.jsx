@@ -18,11 +18,11 @@ const ProductCard = ({ id, name, author, editorial, price, category, image, desc
         <img src={image} alt={name} />
         <div className={styles.details}>
           <h3>{name}</h3>
-          <p>{price}</p>
+          <div  className={styles.price}><p>{`$${price}`}</p></div>
         </div>
       </Link>
       
-      <Link to="/cartbuy" ><button onClick={handleAddToCart}>Add to Cart</button></Link>
+      <Link to="/cartitem" ><button onClick={handleAddToCart}>Add to Cart</button></Link>
     </div>
   );
 };

@@ -3,11 +3,26 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const CLEAR_CART = 'CLEAR_CART';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
+import axios from 'axios';
 
-export const addToCart = (item) => ({
-  type: ADD_TO_CART,
-  payload: item
-});
+
+
+export const addToCart = (product) => async (dispatch) => {
+    try {
+        const response = await axios.post('http://localhost:3001/cartitem', {
+            userId: product.userId,
+            bookId: product.bookId,
+            amount: product.amount
+        });
+
+        dispatch({
+            type: ADD_TO_CART,
+            payload: response.data
+        });
+    } catch (error) {
+        console.error("Error adding to cart", error);
+    }
+};
 
 export const removeFromCart = (itemId) => ({
   type: REMOVE_FROM_CART,
