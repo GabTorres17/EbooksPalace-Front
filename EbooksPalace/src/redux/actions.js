@@ -15,8 +15,9 @@ export const addToCart = (product) => async (dispatch) => {
       userId: product.userId,
       bookId: product.bookId,
       amount: product.amount,
+      price: product.price,
+      image: product.image,
     });
-
     dispatch({
       type: 'ADD_TO_CART',
       payload: response.data,
@@ -27,6 +28,10 @@ export const addToCart = (product) => async (dispatch) => {
     throw error; // Lanza el error para manejarlo en el componente que llama a esta acción
   }
 };
+
+
+
+
 export const removeFromCart = (itemId) => ({
   type: REMOVE_FROM_CART,
   payload: itemId

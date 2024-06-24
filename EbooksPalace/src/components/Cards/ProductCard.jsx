@@ -4,7 +4,7 @@ import { addToCart } from '../../redux/actions';
 import styles from './ProductCard.module.css';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ id, name, price, image }) => {
+const ProductCard = ({ id, name, price, image,}) => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
@@ -14,8 +14,11 @@ const ProductCard = ({ id, name, price, image }) => {
         userId: 1, // Ajusta esto para obtener el ID del usuario actual
         bookId: id, // Debes asegurarte de que 'id' esté correctamente definido
         amount: 1, // Cantidad por defecto, ajusta según sea necesario
+        image: image,
+       price: price,
+
       };
-  
+ 
       const response = await dispatch(addToCart(product));
   
       // Verifica si la respuesta contiene los datos actualizados del carrito

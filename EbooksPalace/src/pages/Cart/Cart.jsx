@@ -16,7 +16,8 @@ const Cart = () => {
     dispatch(removeFromCart(itemId));
   };
 
-  const handleUpdateQuantity = (itemId, quantity) => {s
+  const handleUpdateQuantity = (itemId, quantity) => {
+    s
     dispatch(updateQuantity(itemId, quantity));
   };
 
@@ -36,20 +37,16 @@ const Cart = () => {
           <div key={item.id}>
             <div>
               <li>
-                {item.image}
-                {item.name} {item.quantity}
+              <img src={item.image}/>
+              <p>{item.name}</p>
+              <p>{item.price}</p>
               </li>
             </div>
-            {/* <div>
-              <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
-              <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
-              <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
-            </div> */}
           </div>
         ))}
+
+        <Link to=""><button>Comprar</button></Link>
       </div>
-      <button onClick={handleClearCart}>Clear Cart</button>
-      <button onClick={() => handleAddToCart({ userId: 1, bookId: 15, amount: 0 })}>Add to Cart</button>
     </div>
   );
 };
