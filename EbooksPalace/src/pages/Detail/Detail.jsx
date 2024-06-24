@@ -34,7 +34,7 @@ const Detail = () => {
 
   return (
     <div>
-      <NavBar />
+     
       <div className="detalle-producto">
         {info ? (
           <>

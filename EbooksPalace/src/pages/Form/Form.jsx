@@ -99,7 +99,6 @@ const Form = () => {
 
     return (
         <div>
-            <NavBar />
             <div className="contenedor">
                 <form onSubmit={handleSubmit} className="formulario">
                     <h2 className="title">Formulario de Libro</h2>
