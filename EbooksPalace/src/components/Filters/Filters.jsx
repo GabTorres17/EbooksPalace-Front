@@ -11,6 +11,7 @@ const Filters = () => {
   const [maximo, setMaximo] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [books, setBooks] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState(null);
@@ -43,36 +44,61 @@ const Filters = () => {
     fetchBooks();
   }, [category, order, sort, minimo, maximo, searchValue, currentPage]);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/categories');
+        setCategories(response.data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const sortOptions = [
+    { value: 'asc', label: 'Precio Menor' },
+    { value: 'desc', label: 'Precio Mayor' },
+  ];
+
+  const orderOptions = [
+    { value: 'asc', label: 'Z - A' },
+    { value: 'desc', label: 'A - Z' },
+  ];
+
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
+    setOrder('')
+    setSort('')
   };
 
   const handleOrderChange = (e) => {
     setOrder(e.target.value);
     setCurrentPage(1);
-    setSort('') 
+    setSort('')
   };
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
     setOrder('')
   };
 
   const handleMinimoChange = (e) => {
     setMinimo(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handleMaximoChange = (e) => {
     setMaximo(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handleSearchValueChange = (e) => {
     setSearchValue(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handlePageChange = (page) => {
@@ -108,7 +134,7 @@ const Filters = () => {
   };
 
   return (
-   <div className={styles.filtersContainer}>
+    <div className={styles.filtersContainer}>
       <div className={styles.searchFilter}>
         <form className={styles.filterForm}>
           <label className={styles.searchBar}>
@@ -143,11 +169,9 @@ const Filters = () => {
             Categoría:
             <select value={category} onChange={handleCategoryChange}>
               <option value="">Categorías...</option>
-              <option value="Terror">Terror</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Romance">Romance</option>
-              <option value="Education">Education</option>
-              <option value="Self-Help">Self-Help</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
             </select>
           </label>
           <br />
@@ -155,8 +179,9 @@ const Filters = () => {
             Alfabético:
             <select value={order} onChange={handleOrderChange}>
               <option value="">Alfabético...</option>
-              <option value="asc">Z - A</option>
-              <option value="desc">A - Z</option>
+              {orderOptions.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
             </select>
           </label>
           <br />
@@ -164,8 +189,9 @@ const Filters = () => {
             Precio:
             <select value={sort} onChange={handleSortChange}>
               <option value="">Precio...</option>
-              <option value="asc">Precio Menor</option>
-              <option value="desc">Precio Mayor</option>
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
             </select>
           </label>
         </form>
