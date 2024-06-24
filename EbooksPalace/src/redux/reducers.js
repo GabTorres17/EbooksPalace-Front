@@ -3,23 +3,34 @@ import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART, SET_USER_PR
 
 
 const initialState = {
-    cart: []
+    cartBuy: []
 };
-
-const cartReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_TO_CART:
-            return {
-                ...state,
-                cart: [...state.cart, action.payload]
-            };
-        default:
-            return state;
-    }
+const cartReducer = (state = initialState.cartBuy, action) => {
+  switch (action.type) {
+    case ADD_TO_CART:
+      const itemInCart = state.find(item => item.id === action.payload.id);
+      if (itemInCart) {
+        return state.map(item =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...state, { ...action.payload, quantity: 1 }];
+    case REMOVE_FROM_CART:
+      return state.filter(item => item.id !== action.payload);
+    case UPDATE_QUANTITY:
+      return state.map(item =>
+        item.id === action.payload.id
+          ? { ...item, quantity: action.payload.quantity }
+          : item
+      );
+    case CLEAR_CART:
+      return [];
+    default:
+      return state;
+  }
 };
-
-
-
 const initialUserState = {
   userProfile: null
 };

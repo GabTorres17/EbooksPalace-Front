@@ -8,7 +8,7 @@ const ProductCard = ({ id, name, author, editorial, price, category, image, desc
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ name, price, quantity: 1 }));
+    dispatch(addToCart);
   };
 
   return (
@@ -22,7 +22,7 @@ const ProductCard = ({ id, name, author, editorial, price, category, image, desc
         </div>
       </Link>
       
-      <Link to="/cartitem" ><button onClick={handleAddToCart}>Add to Cart</button></Link>
+      <Link to="/cartitem" ><button onClick={handleAddToCart({addToCart})}>Add to Cart</button></Link>
     </div>
   );
 };
