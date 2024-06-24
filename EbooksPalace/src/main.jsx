@@ -11,7 +11,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <BrowserRouter>
-    <Auth0Provider
+    <Auth0Provider 
       domain="dev-se865nbu7e0wfkrv.us.auth0.com"
       clientId="rBSE1Pa6iliRaGcLqdeKtrqU5StWxd9m"
       authorizationParams={{

@@ -7,23 +7,26 @@ import axios from 'axios';
 
 
 
-export const addToCart = (product) => async (dispatch) => {
-    try {
-        const response = await axios.post('http://localhost:3001/cart', {
-          userId: product.Id,
-          bookId: product.Id,
-          amount: product.amount
-        });
-        dispatch({
-          type: ADD_TO_CART,
-          payload: response.data
-        });
-       
-    } catch (error) {
-        console.error("Error adding to cart", error);
-    }
-};
 
+
+export const addToCart = (product) => async (dispatch) => {
+  try {
+    const response = await axios.post('http://localhost:3001/cart', {
+      userId: product.userId,
+      bookId: product.bookId,
+      amount: product.amount,
+    });
+
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: response.data,
+    });
+
+    return response.data; // Devuelve los datos actualizados del carrito si es necesario
+  } catch (error) {
+    throw error; // Lanza el error para manejarlo en el componente que llama a esta acción
+  }
+};
 export const removeFromCart = (itemId) => ({
   type: REMOVE_FROM_CART,
   payload: itemId
