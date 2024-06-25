@@ -23,7 +23,16 @@ export const clearCart = () => ({
   type: CLEAR_CART
 });
 
-export const setUserProfile = (profile) => ({
+export const setUserProfile = (userProfile) => ({
   type: SET_USER_PROFILE,
-  payload: profile
+  payload: userProfile
 });
+
+/* export const setUserProfile = (userProfile) => {
+  // guardar en el localStorage
+  localStorage.setItem("userProfile", JSON.stringify(userProfile));
+  return {
+    type: "SET_USER_PROFILE",
+    payload: userProfile,
+  };
+}; */

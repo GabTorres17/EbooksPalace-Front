@@ -21,18 +21,28 @@ export const Profile = () => {
                     profilePicture: user.picture,
                 });
 
-                if (response.status === 400) {
-                    console.log("Faltan datos al momento de la creación");
-                } else if (response.status === 200 || response.status === 201) {
-                    console.log("Este usuario ya existe en la base de datos");
-                    dispatch(setUserProfile(response.data.newUser));
+                if (response.status === 200 || response.status === 201) {
+                    const userData = response.data.existingUser || response.data.newUser;
+                    // guarda datos en localStorage
+                    localStorage.setItem('userProfile', JSON.stringify(userData));
+                    // guarda datos en Redux
+                    dispatch(setUserProfile(userData));
                 }
             } catch (error) {
                 console.error("Error al verificar/crear usuario:", error.response ? error.response.data : error.message);
             }
         };
 
-        if (!isLoading && isAuthenticated && user) {
+        const storedUserProfile = localStorage.getItem('userProfile');
+        if (storedUserProfile) {
+            try {
+                const parsedUserProfile = JSON.parse(storedUserProfile);
+                dispatch(setUserProfile(parsedUserProfile));
+            } catch (error) {
+                console.error("Error parsing userProfile from localStorage:", error.message);
+                localStorage.removeItem('userProfile');
+            }
+        } else if (!isLoading && isAuthenticated && user) {
             fetchUserProfile();
         }
     }, [isLoading, isAuthenticated, user, dispatch]);
