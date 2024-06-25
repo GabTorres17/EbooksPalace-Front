@@ -34,7 +34,7 @@ const Detail = () => {
 
   return (
     <div>
-      <NavBar />
+     
       <div className="detalle-producto">
         {info ? (
           <>
@@ -57,7 +57,7 @@ const Detail = () => {
               <h3>Autor:</h3> 
               <h4>{info.author}</h4>
               <br />
-              <Link to="/cartbuy"><button>Add to Cart</button> </Link>
+              <Link to="/cartitem"><button>Add to Cart</button> </Link>
             </div>
           </>
         ) : (

@@ -12,8 +12,6 @@ export const Profile = () => {
     useEffect(() => {
         const fetchUserProfile = async () => {
 
-            console.log("Datos del usuario completos:", user);
-
             try {
                 const response = await axios.post('http://localhost:3001/userverify', {
                     name: user.name,

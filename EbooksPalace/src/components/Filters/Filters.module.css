@@ -1,3 +1,14 @@
+*{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.labelmin{
+  width: 125px;
+}
+.searchBar{
+  width: 25%;
+  margin-left: 500px;
+}
+
 .filtersContainer {
   display: flex;
   flex-direction: column;
@@ -8,13 +19,15 @@
 }
 
 .searchFilter {
-  width: 15%; /* Ocupa el ancho completo del contenedor */
+  margin-top: -20px;
+background-color: rgb(21, 11, 45);
+  width: 120%; /* Ocupa el ancho completo del contenedor */
   margin-bottom: 20px; /* Espacio entre el filtro de búsqueda y los demás filtros */
   text-align: center; /* Centra el contenido del filtro de búsqueda horizontalmente */
 }
 
 .sideFilters {
-  width: 10%; /* Ocupa el ancho completo del contenedor */
+  width: 15%; /* Ocupa el ancho completo del contenedor */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -22,16 +35,19 @@
 }
 
 .filterForm {
-  background-color: #f0f0f0;
+  color: #ffffff;
+  background-color:rgb(21, 11, 45);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Ocupa el ancho completo del contenedor */
+  width: 80%; /* Ocupa el ancho completo del contenedor */
+  position:static;
 }
 
 .filterForm label {
   margin-bottom: 10px;
   display: block;
+  
 }
 
 .filterForm input,
@@ -61,7 +77,9 @@
 }
 
 .books {
-  width: 70%; /* Ocupa el 70% del ancho del contenedor principal */
+  
+  margin-top: -500px;
+  width: 60%; /* Ocupa el 70% del ancho del contenedor principal */
 }
 
 .booksGrid {

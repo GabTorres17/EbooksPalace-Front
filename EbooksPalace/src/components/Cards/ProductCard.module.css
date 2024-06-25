@@ -1,56 +1,77 @@
+/* ProductCard.module.css */
+.price{
+background-color: #08461c;
+display: inline;
 
+}
 .card {
-  max-width: 350px;
-  background-color: #ffffff;
+  background-color:black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
   overflow: hidden;
-  margin-left: auto; /* Alinea a la derecha */
-  margin-right: 20px; /* Espacio a la derecha del usuario */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  transition: transform 0.2s ease-in-out;
+  height: 580px;
+  width: 280px;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.05);
 }
 
-.image {
-  width: 400px;
-  height: 500px;
-  object-fit: cover;
-  border-bottom: 1px solid #ddd;
+.card img {
+  width: 300px;
+  height: 400px;
 }
 
-.details{
-  padding: 20px;
+.details {
+  padding: 16px;
+  text-align: center;
 }
 
-.name {
-  color: #000000;
-  font-size: 18px;
-  font-weight: bold;
+.details h3 {
+  font-size: 1.25rem;
   margin-bottom: 8px;
+  color: #333;
 }
 
-.author,
-.editorial,
-.category {
-  font-size: 14px;
+.details p {
+  font-size: 1rem;
   color: #666;
 }
 
-.price {
-  background-color: rgb(13, 88, 39);
-  padding: 5px;
-  margin-left: 250px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #ffffff;
-  margin-top: 8px;
+.Info {
+  text-decoration: none;
 }
 
-.description {
-  font-size: 14px;
-  color: #333;
-  margin-top: 12px;
+.Info img {
+  border-bottom: 1px solid #ddd;
+}
+
+.Info .details {
+  padding: 10px;
+}
+
+.Info h3, .Info p {
+  margin: 0;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
