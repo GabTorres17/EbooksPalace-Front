@@ -1,33 +1,26 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART, SET_USER_PROFILE } from './actions';
 
-const initialCartState = [];
+const initialState = {
+  cart: [],
+};
 
-const cartReducer = (state = initialCartState, action) => {
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const itemInCart = state.find(item => item.id === action.payload.id);
-      if (itemInCart) {
-        return state.map(item =>
-          item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...state, { ...action.payload, quantity: 1 }];
-    case REMOVE_FROM_CART:
-      return state.filter(item => item.id !== action.payload);
-    case UPDATE_QUANTITY:
-      return state.map(item =>
-        item.id === action.payload.id
-          ? { ...item, quantity: action.payload.quantity }
-          : item
-      );
+      return {
+        ...state,
+        cart: [...state.cart, action.payload.book],
+      };
     case CLEAR_CART:
-      return [];
+      return {
+        ...state,
+        cart: [],
+      };
     default:
       return state;
   }
-};
+}
+
 
 const initialUserState = {
   userProfile: null

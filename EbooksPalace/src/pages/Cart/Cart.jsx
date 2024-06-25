@@ -1,46 +1,44 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, updateQuantity, clearCart } from '../../redux/actions';
-import { Link } from 'react-router-dom';
+import styles from "./Cart.module.css";
+
 const Cart = () => {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.cart);
+  const items = useSelector(state => state.cart.cart);
+console.log(items);
+  // const handleRemoveFromCart = (itemId) => {
+  //   dispatch(removeFromCart(itemId));
+  // };
 
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
-  };
-
-  const handleRemoveFromCart = (itemId) => {
-    dispatch(removeFromCart(itemId));
-  };
-
-  const handleUpdateQuantity = (itemId, quantity) => {
-    dispatch(updateQuantity(itemId, quantity));
-  };
+  // const handleUpdateQuantity = (itemId, quantity) => {s
+  //   dispatch(updateQuantity(itemId, quantity));
+  // };
 
   const handleClearCart = () => {
     dispatch(clearCart());
   };
 
+  if (!Array.isArray(items) || items.length === 0) {
+    return <div>No hay artículos en el carrito.</div>;
+  }
   return (
     <div>
-      <h2>Cart</h2>
-      <Link to="/home">
-          <button>Home</button>
-        </Link>
-
-      <ul>
+      <h2 className={styles.Title}>Carrito de compras disponible para ser comprado</h2>
+      <div>
         {items.map((item) => (
-          <li key={item.id}>
-            {item.name} - Quantity: {item.quantity}
-            <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
-            <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
-            <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
-          </li>
+          <div key={item.id}>
+            <div>
+            <img src={item.image}/>
+              <p>{item.name}</p>
+              <p>{item.price}</p>
+            </div>
+          </div>
         ))}
-      </ul>
+
+        <Link to=""><button>Comprar</button></Link>
+      </div>
       <button onClick={handleClearCart}>Clear Cart</button>
-      <button onClick={() => handleAddToCart({ id: 1, name: 'New Item' })}>Add to Cart</button>
     </div>
   );
 };

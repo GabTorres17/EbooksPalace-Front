@@ -5,17 +5,19 @@ import Landing from './pages/Langing/Landing.jsx'
 import Form from './pages/Form/Form.jsx'
 import Cart from './pages/Cart/Cart.jsx'
 import Checkout from './pages/Checkout/Checkout.jsx'
+import NavBar from './components/Nav/Nav.jsx'
 function App() {
 
   return (
     <>
       <div>
+      <NavBar/>
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/home' element={<Home />} />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/form' element={<Form />} />
-          <Route path='/cartbuy' element={<Cart></Cart>} />
+          <Route path='/cartitem' element={<Cart></Cart>} />
           <Route path='/checkout' element={<Checkout></Checkout>} />
         </Routes>
       </div>

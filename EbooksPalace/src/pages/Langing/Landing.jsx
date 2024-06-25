@@ -12,9 +12,7 @@ import { Link } from 'react-router-dom'
 const Landing = () => {
   return (
     <div className={style.contenedor}>
-      <div>
-        <NavBar />
-      </div>
+    
       <img className={style.img} src={foto1} />
       
 

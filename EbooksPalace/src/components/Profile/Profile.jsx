@@ -12,8 +12,6 @@ export const Profile = () => {
     useEffect(() => {
         const fetchUserProfile = async () => {
 
-            console.log("Datos del usuario completos:", user);
-
             try {
                 const response = await axios.post('http://localhost:3001/userverify', {
                     name: user.name,
@@ -24,7 +22,6 @@ export const Profile = () => {
                 if (response.status === 400) {
                     console.log("Faltan datos al momento de la creación");
                 } else if (response.status === 200 || response.status === 201) {
-                    console.log("Este usuario ya existe en la base de datos");
                     dispatch(setUserProfile(response.data.newUser));
                 }
             } catch (error) {
