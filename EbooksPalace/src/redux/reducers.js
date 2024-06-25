@@ -1,23 +1,25 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART, SET_USER_PROFILE } from './actions';
 
-
-
-
 const initialState = {
-    cart: [],
+  cart: [],
 };
 
 const cartReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_TO_CART:
-            return {
-                ...state,
-                cart: [...state.cart, action.payload.newCartBook],
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case ADD_TO_CART:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload.book],
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+      };
+    default:
+      return state;
   }
+}
 
 
 const initialUserState = {
