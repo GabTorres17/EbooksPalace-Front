@@ -4,8 +4,7 @@ import { addToCart } from '../../redux/actions';
 import styles from './ProductCard.module.css';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ id, name, price, image }) => {
-  
+const ProductCard = ({ id, name, price, image,}) => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
@@ -15,14 +14,17 @@ const ProductCard = ({ id, name, price, image }) => {
         userId: 1, // Ajusta esto para obtener el ID del usuario actual
         bookId: id, // Debes asegurarte de que 'id' esté correctamente definido
         amount: 1, // Cantidad por defecto, ajusta según sea necesario
-        // name,
-        // image,
-        // price
+        image: image,
+       price: price,
+
       };
+ 
+      const response = await dispatch(addToCart(product));
   
-      await dispatch(addToCart(product));
-    
-      setError(''); 
+      // Verifica si la respuesta contiene los datos actualizados del carrito
+      console.log('Carrito actualizado:', response);
+  
+      setError(''); // Limpia el estado de error si no hay problemas
     } catch (error) {
       setError(error.response?.data?.message || 'Error al agregar el libro al carrito');
     }

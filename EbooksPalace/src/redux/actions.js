@@ -22,6 +22,10 @@ export const addToCart = (product) => async (dispatch) => {
     throw error;
   }
 };
+
+
+
+
 export const removeFromCart = (itemId) => ({
   type: REMOVE_FROM_CART,
   payload: itemId

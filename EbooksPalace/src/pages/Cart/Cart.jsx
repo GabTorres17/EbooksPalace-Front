@@ -33,13 +33,10 @@ console.log(items);
               <p>{item.name}</p>
               <p>{item.price}</p>
             </div>
-            {/* <div>
-              <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
-              <button onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>+</button>
-              <button onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}>-</button>
-            </div> */}
           </div>
         ))}
+
+        <Link to=""><button>Comprar</button></Link>
       </div>
       <button onClick={handleClearCart}>Clear Cart</button>
     </div>
