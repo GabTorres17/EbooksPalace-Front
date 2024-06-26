@@ -1,15 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart, updateQuantity, clearCart } from '../../redux/actions';
+import { addToCart, removeItem, updateQuantity, clearCart } from '../../redux/actions';
 import styles from "./Cart.module.css";
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const items = useSelector(state => state.cart.cart);
-console.log(items);
-  // const handleRemoveFromCart = (itemId) => {
-  //   dispatch(removeFromCart(itemId));
-  // };
+  // console.log(items);
+
+  const handleRemoveItem = (bookId) => {
+    dispatch(removeItem(bookId));
+  };
 
   // const handleUpdateQuantity = (itemId, quantity) => {s
   //   dispatch(updateQuantity(itemId, quantity));
@@ -29,9 +31,12 @@ console.log(items);
         {items.map((item) => (
           <div key={item.id}>
             <div>
-            <img src={item.image}/>
+              <img src={item.image} />
               <p>{item.name}</p>
               <p>{item.price}</p>
+            </div>
+            <div>
+              <button onClick={() => handleRemoveItem(item.bookId)}>Remove</button>
             </div>
           </div>
         ))}
