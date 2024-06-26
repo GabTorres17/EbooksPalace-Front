@@ -19,12 +19,12 @@ export const Profile = () => {
                     profilePicture: user.picture,
                 });
 
-                if (response.status === 200 || response.status === 201) {
-                    const userData = response.data.existingUser || response.data.newUser;
-                    // guarda datos en localStorage
-                    localStorage.setItem('userProfile', JSON.stringify(userData));
-                    // guarda datos en Redux
-                    dispatch(setUserProfile(userData));
+                if (response.status === 400) {
+                    console.log("Faltan datos al momento de la creación");
+                } else if (response.status === 200) {
+                    dispatch(setUserProfile(response.data.existingUser));
+                } else if (response.status === 201) {
+                    dispatch(setUserProfile(response.data.newUser));
                 }
             } catch (error) {
                 console.error("Error al verificar/crear usuario:", error.response ? error.response.data : error.message);
