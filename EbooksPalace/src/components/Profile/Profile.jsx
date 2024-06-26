@@ -21,7 +21,9 @@ export const Profile = () => {
 
                 if (response.status === 400) {
                     console.log("Faltan datos al momento de la creación");
-                } else if (response.status === 200 || response.status === 201) {
+                } else if (response.status === 200) {
+                    dispatch(setUserProfile(response.data.existingUser));
+                } else if (response.status === 201) {
                     dispatch(setUserProfile(response.data.newUser));
                 }
             } catch (error) {
@@ -29,7 +31,16 @@ export const Profile = () => {
             }
         };
 
-        if (!isLoading && isAuthenticated && user) {
+        const storedUserProfile = localStorage.getItem('userProfile');
+        if (storedUserProfile) {
+            try {
+                const parsedUserProfile = JSON.parse(storedUserProfile);
+                dispatch(setUserProfile(parsedUserProfile));
+            } catch (error) {
+                console.error("Error parsing userProfile from localStorage:", error.message);
+                localStorage.removeItem('userProfile');
+            }
+        } else if (!isLoading && isAuthenticated && user) {
             fetchUserProfile();
         }
     }, [isLoading, isAuthenticated, user, dispatch]);
