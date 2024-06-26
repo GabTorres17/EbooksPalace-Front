@@ -11,6 +11,15 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart, action.payload.book],
       };
+      case REMOVE_FROM_CART:
+        console.log("Antes de la eliminación:", state.cart);
+        const updatedCart = state.cart.filter(item => item.id !== action.payload);
+        console.log("Después de la eliminación:", updatedCart);
+        return {
+            ...state,
+            cart: updatedCart,
+        };
+    
     case CLEAR_CART:
       return {
         ...state,

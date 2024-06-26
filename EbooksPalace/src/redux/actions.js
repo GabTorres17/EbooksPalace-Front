@@ -23,13 +23,20 @@ export const addToCart = (product) => async (dispatch) => {
   }
 };
 
+export const removeItem = (bookId) => async (dispatch) => {
+  try {
+      await axios.post('http://localhost:3001/remove', {
+          bookId,
+      });
 
-
-
-export const removeFromCart = (itemId) => ({
-  type: REMOVE_FROM_CART,
-  payload: itemId
-});
+      dispatch({
+          type: REMOVE_FROM_CART,
+          payload: { bookId },
+      });
+  } catch (error) {
+      throw error;
+  }
+};
 
 export const updateQuantity = (itemId, quantity) => ({
   type: UPDATE_QUANTITY,
