@@ -41,7 +41,7 @@ const Cart = () => {
           </div>
         ))}
 
-        <Link to=""><button>Comprar</button></Link>
+        <Link to="/checkout"><button>Comprar</button></Link>
       </div>
       <button onClick={handleClearCart}>Clear Cart</button>
     </div>

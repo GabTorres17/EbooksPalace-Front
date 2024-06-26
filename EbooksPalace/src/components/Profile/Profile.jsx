@@ -21,7 +21,9 @@ export const Profile = () => {
 
                 if (response.status === 400) {
                     console.log("Faltan datos al momento de la creación");
-                } else if (response.status === 200 || response.status === 201) {
+                } else if (response.status === 200) {
+                    dispatch(setUserProfile(response.data.existingUser));
+                } else if (response.status === 201) {
                     dispatch(setUserProfile(response.data.newUser));
                 }
             } catch (error) {

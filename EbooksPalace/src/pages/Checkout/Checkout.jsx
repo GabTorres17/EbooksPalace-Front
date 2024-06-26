@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import "./Checkout.css";
 
-const ProductDisplay = ({ handleCheckout }) => (
+const ProductDisplay = ({ items, handleCheckout }) => (
     <section>
-        <div className="product">
-            <img
-                src="https://i.imgur.com/EHyR2nP.png"
-                alt="The cover of Stubborn Attachments"
-            />
-            <div className="description">
-                <h3>Stubborn Attachments</h3>
-                <h5>$20.00</h5>
+        {items.map(item => (
+            <div className="product" key={item.id}>
+                <img src={item.image} alt={item.name} />
+                <div className="description">
+                    <h3>{item.name}</h3>
+                    <h5>${item.price}</h5>
+                </div>
             </div>
-        </div>
+        ))}
         <button onClick={handleCheckout}>
             Checkout
         </button>
@@ -26,10 +26,10 @@ const Message = ({ message }) => (
 );
 
 export default function Checkout() {
+    const items = useSelector(state => state.cart.cart);
     const [message, setMessage] = useState("");
 
     useEffect(() => {
-        // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
 
         if (query.get("success")) {
@@ -49,13 +49,14 @@ export default function Checkout() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
-                }
+                },
+                body: JSON.stringify(items)
             });
 
             if (response.ok) {
                 const data = await response.json();
                 if (data.url) {
-                    window.location.href = data.url;  // Redirigir a la URL de Stripe
+                    window.location.href = data.url;  // redirige a Stripe
                 } else {
                     console.error("Error: URL de redirección no encontrada.");
                 }
@@ -70,6 +71,7 @@ export default function Checkout() {
     return message ? (
         <Message message={message} />
     ) : (
-        <ProductDisplay handleCheckout={handleCheckout} />
+        <ProductDisplay items={items} handleCheckout={handleCheckout} />
     );
 }
+
