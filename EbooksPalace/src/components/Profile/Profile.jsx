@@ -23,25 +23,36 @@ export const Profile = () => {
                     console.log("Faltan datos al momento de la creación");
                 } else if (response.status === 200) {
                     dispatch(setUserProfile(response.data.existingUser));
+                    localStorage.setItem('userProfile', JSON.stringify(response.data.existingUser));
                 } else if (response.status === 201) {
                     dispatch(setUserProfile(response.data.newUser));
+                    localStorage.setItem('userProfile', JSON.stringify(response.data.newUser));
                 }
             } catch (error) {
                 console.error("Error al verificar/crear usuario:", error.response ? error.response.data : error.message);
             }
         };
-
-        const storedUserProfile = localStorage.getItem('userProfile');
-        if (storedUserProfile) {
-            try {
-                const parsedUserProfile = JSON.parse(storedUserProfile);
-                dispatch(setUserProfile(parsedUserProfile));
-            } catch (error) {
-                console.error("Error parsing userProfile from localStorage:", error.message);
-                localStorage.removeItem('userProfile');
+        const handleUserChange = () => {
+            const storedProfile = localStorage.getItem('userProfile');
+            if (storedProfile) {
+                try {
+                    const parsedProfile = JSON.parse(storedProfile);
+                    if (parsedProfile !== user.email) {
+                        localStorage.removeItem('userProfile');
+                        fetchUserProfile();
+                    } else {
+                        dispatch(setUserProfile(parsedProfile));
+                    }
+                } catch (error) {
+                    console.error("Error parsing userProfile from localStorage:", error.message);
+                    localStorage.removeItem('userProfile');
+                }
+            } else {
+                fetchUserProfile();
             }
-        } else if (!isLoading && isAuthenticated && user) {
-            fetchUserProfile();
+        };
+        if (!isLoading && isAuthenticated && user) {
+            handleUserChange();
         }
     }, [isLoading, isAuthenticated, user, dispatch]);
 
