@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import "./Checkout.css";
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDisplay = ({ items, handleCheckout }) => (
     <section>
@@ -34,12 +36,34 @@ export default function Checkout() {
 
         if (query.get("success")) {
             setMessage("Order placed! You will receive an email confirmation.");
+            toast.success('Order placed successfully!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
 
         if (query.get("canceled")) {
             setMessage(
                 "Order canceled -- continue to shop around and checkout when you're ready."
             );
+            toast.error('Order canceled!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
     }, []);
 
@@ -68,10 +92,14 @@ export default function Checkout() {
         }
     };
 
-    return message ? (
-        <Message message={message} />
-    ) : (
-        <ProductDisplay items={items} handleCheckout={handleCheckout} />
+    return (
+        <>
+            <ToastContainer />
+            {message ? (
+                <Message message={message} />
+            ) : (
+                <ProductDisplay items={items} handleCheckout={handleCheckout} />
+            )}
+        </>
     );
 }
-

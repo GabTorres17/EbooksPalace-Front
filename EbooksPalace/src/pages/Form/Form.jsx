@@ -1,12 +1,13 @@
 import React, { useState, useRef } from 'react';
 import './Form.css';
-import validate from "./validate"
-import NavBar from '../../components/Nav/Nav'
+import validate from "./validate";
+import NavBar from '../../components/Nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Form = () => {
-
     const [input, setInput] = useState({
         name: "",
         editorial: "",
@@ -21,7 +22,7 @@ const Form = () => {
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
     const [URL_Image, setURL_Image] = useState("");
-    const fileInputRef = useRef(null)
+    const fileInputRef = useRef(null);
 
     const deleteImage = () => {
         setURL_Image("");
@@ -32,7 +33,17 @@ const Form = () => {
 
     const changeUploadImage = async (e) => {
         if (URL_Image) {
-            alert("Primero elimine la imagen actual antes de subir una nueva.");
+            toast.warn('Primero elimine la imagen actual antes de subir una nueva.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
             return;
         }
 
@@ -42,17 +53,28 @@ const Form = () => {
         data.append("upload_preset", "ebookspalace_preset");
 
         try {
-            const response = await axios.post("https://api.cloudinary.com/v1_1/dwxr0uihx/image/upload", data)
-            console.log(response.data)
-            setURL_Image(response.data.secure_url)
+            const response = await axios.post("https://api.cloudinary.com/v1_1/dwxr0uihx/image/upload", data);
+            console.log(response.data);
+            setURL_Image(response.data.secure_url);
             setErrors((prevErrors) => {
                 const { image, ...rest } = prevErrors;
                 return rest;
             });
         } catch (error) {
             console.error("Error al subir la imagen", error);
+            toast.error('Error al subir la imagen.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
         }
-    }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -68,16 +90,15 @@ const Form = () => {
         }));
     };
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validate({ ...input, image: URL_Image });
-        setErrors(validationErrors)
+        setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-
                 const formData = {
                     ...input,
                     image: URL_Image,
@@ -85,20 +106,42 @@ const Form = () => {
                 const response = await axios.post("http://localhost:3001/books", formData);
 
                 if (response.status === 200) {
-                    console.log("Libro creado con exito", response.data);
-                    setSuccessMessage("El libro fue creado exitosamente")
+                    console.log("Libro creado con éxito", response.data);
+                    setSuccessMessage("El libro fue creado exitosamente");
+                    toast.success('Libro creado con éxito.', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
                     navigate("/");
                 }
             } catch (error) {
-                console.error("Error al crear el libro", error)
-                setErrors({ submit: "Hubo un error al crear el libro. Inténtalo de nuevo." })
+                console.error("Error al crear el libro", error);
+                setErrors({ submit: "Hubo un error al crear el libro. Inténtalo de nuevo." });
+                toast.error('Hubo un error al crear el libro. Inténtalo de nuevo.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             }
-
         }
-    }
+    };
 
     return (
         <div>
+            <ToastContainer />
             <div className="contenedor">
                 <form onSubmit={handleSubmit} className="formulario">
                     <h2 className="title">Formulario de Libro</h2>
@@ -145,8 +188,8 @@ const Form = () => {
                         {errors.image && <p>{errors.image}</p>}
                         {URL_Image && (
                             <div className='image-div'>
-                                <img className="uploaded-image" src={URL_Image} />
-                                <button type="button" onClick={() => deleteImage()}>Eliminar Imagen</button>
+                                <img className="uploaded-image" src={URL_Image} alt="uploaded" />
+                                <button type="button" onClick={deleteImage}>Eliminar Imagen</button>
                             </div>
                         )}
                     </div>
