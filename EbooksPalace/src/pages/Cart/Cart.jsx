@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const Cart = () => {
   const dispatch = useDispatch();
   const items = useSelector(state => state.cart.cart);
-  // console.log(items);
 
   const handleRemoveItem = (id) => {
     const storedUserProfile = localStorage.getItem('userProfile');
@@ -16,8 +15,6 @@ const Cart = () => {
       return;
     }
     const { id: userId } = JSON.parse(storedUserProfile);
-    console.log('ID del usuario:', userId); // Agrega este console.log para verificar el ID de usuario
-    console.log('ID del libro a eliminar:', id);
     dispatch(removeItem(userId, id));
   };
 
