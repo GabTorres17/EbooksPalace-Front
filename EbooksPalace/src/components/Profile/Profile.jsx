@@ -23,8 +23,10 @@ export const Profile = () => {
                     console.log("Faltan datos al momento de la creación");
                 } else if (response.status === 200) {
                     dispatch(setUserProfile(response.data.existingUser));
+                    localStorage.setItem('userProfile', JSON.stringify(response.data.existingUser)); // Guardar en localStorage
                 } else if (response.status === 201) {
                     dispatch(setUserProfile(response.data.newUser));
+                    localStorage.setItem('userProfile', JSON.stringify(response.data.newUser)); // Guardar en localStorage
                 }
             } catch (error) {
                 console.error("Error al verificar/crear usuario:", error.response ? error.response.data : error.message);

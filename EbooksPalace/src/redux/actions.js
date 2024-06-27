@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
-export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const CLEAR_CART = 'CLEAR_CART';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -23,20 +23,26 @@ export const addToCart = (product) => async (dispatch) => {
   }
 };
 
-export const removeItem = (bookId) => async (dispatch) => {
-  try {
-      await axios.post('http://localhost:3001/remove', {
-          bookId,
+export const removeItem = (userId, bookId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/remove', {
+        userId,
+        bookId
       });
-
-      dispatch({
-          type: REMOVE_FROM_CART,
-          payload: { bookId },
-      });
-  } catch (error) {
-      throw error;
-  }
+      console.log('Respuesta del servidor:', response);
+      if (response.status === 200) {
+        dispatch({
+          type: 'REMOVE_ITEM',
+          payload: { userId, bookId }
+        });
+      }
+    } catch (error) {
+      console.error('Error al eliminar el artículo del carrito:', error.response?.data || error.message);
+    }
+  };
 };
+
 
 export const updateQuantity = (itemId, quantity) => ({
   type: UPDATE_QUANTITY,
