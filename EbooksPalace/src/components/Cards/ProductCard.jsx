@@ -25,11 +25,8 @@ const ProductCard = ({ id, name, price, image }) => {
         amount: 1,
       };
  
-      const response = await dispatch(addToCart(product));
-  
-      // Verifica si la respuesta contiene los datos actualizados del carrito
-      console.log('Carrito actualizado:', response);
-  
+      await dispatch(addToCart(product));
+    
       setError('');
     } catch (error) {
       setError(error.response?.data?.message || 'Error al agregar el libro al carrito');
