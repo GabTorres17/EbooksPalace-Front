@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, clearCart } from '../../redux/actions';
+import { removeItem, emptyCart } from '../../redux/actions';
 import styles from "./Cart.module.css";
 import { Link } from 'react-router-dom';
 
@@ -19,12 +19,18 @@ const Cart = () => {
   };
 
   const handleClearCart = () => {
-    dispatch(clearCart());
+    const storedUserProfile = localStorage.getItem('userProfile');
+    if (!storedUserProfile) {
+      console.error('Usuario no autenticado. Por favor, inicie sesión.');
+      return;
+    }
+    const { id: userId } = JSON.parse(storedUserProfile);
+    dispatch(emptyCart(userId));
   };
 
   if (!Array.isArray(items) || items.length === 0) {
     return <div>No hay artículos en el carrito.</div>;
-  }
+  };
 
   return (
     <div>
