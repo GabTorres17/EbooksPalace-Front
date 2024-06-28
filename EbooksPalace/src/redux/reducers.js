@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART, SET_USER_PROFILE } from './actions';
+import { ADD_TO_CART, REMOVE_ITEM, UPDATE_QUANTITY, CLEAR_CART, SET_USER_PROFILE } from './actions';
 
 const initialState = {
   cart: [],
@@ -11,10 +11,8 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart, action.payload.book],
       };
-      case REMOVE_FROM_CART:
-        console.log("Antes de la eliminación:", state.cart);
-        const updatedCart = state.cart.filter(item => item.id !== action.payload);
-        console.log("Después de la eliminación:", updatedCart);
+      case REMOVE_ITEM:
+        const updatedCart = state.cart.filter(item => item.id !== action.payload.bookId);
         return {
             ...state,
             cart: updatedCart,
