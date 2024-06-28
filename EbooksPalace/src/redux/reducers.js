@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM, UPDATE_QUANTITY, CLEAR_CART, SET_USER_PROFILE } from './actions';
+import { ADD_TO_CART, REMOVE_ITEM, UPDATE_QUANTITY, EMPTY_CART, SET_USER_PROFILE } from './actions';
 
 const initialState = {
   cart: [],
@@ -11,23 +11,21 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart, action.payload.book],
       };
-      case REMOVE_ITEM:
-        const updatedCart = state.cart.filter(item => item.id !== action.payload.bookId);
-        return {
-            ...state,
-            cart: updatedCart,
-        };
-    
-    case CLEAR_CART:
+    case REMOVE_ITEM:
+      const updatedCart = state.cart.filter(item => item.id !== action.payload.bookId);
       return {
         ...state,
-        cart: [],
+        cart: updatedCart,
+      };
+    case EMPTY_CART:
+      return {
+        ...state,
+        cart: []
       };
     default:
       return state;
   }
-}
-
+};
 
 const initialUserState = {
   userProfile: null

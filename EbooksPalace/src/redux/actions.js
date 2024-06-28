@@ -3,7 +3,7 @@ import axios from 'axios';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
-export const CLEAR_CART = 'CLEAR_CART';
+export const EMPTY_CART = 'EMPTY_CART';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const addToCart = (product) => async (dispatch) => {
@@ -43,14 +43,25 @@ export const removeItem = (userId, bookId) => {
   };
 };
 
+export const emptyCart = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete('http://localhost:3001/cart/empty', {
+        data: { userId }
+      });
+      dispatch({
+        type: 'EMPTY_CART',
+        payload: userId
+      });
+    } catch (error) {
+      console.error('Error al vaciar el carrito:', error.response?.data || error.message);
+    }
+  };
+};
 
 export const updateQuantity = (itemId, quantity) => ({
   type: UPDATE_QUANTITY,
   payload: { id: itemId, quantity }
-});
-
-export const clearCart = () => ({
-  type: CLEAR_CART
 });
 
 export const setUserProfile = (userProfile) => ({
