@@ -6,6 +6,7 @@ import Form from './pages/Form/Form.jsx'
 import Cart from './pages/Cart/Cart.jsx'
 import Checkout from './pages/Checkout/Checkout.jsx'
 import NavBar from './components/Nav/Nav.jsx'
+import Dashboard from './pages/dashboard/Dashboard.jsx'
 function App() {
 
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/form' element={<Form />} />
           <Route path='/cartitem' element={<Cart></Cart>} />
           <Route path='/checkout' element={<Checkout></Checkout>} />
+          <Route path='/admin' element={<Dashboard></Dashboard>} />
         </Routes>
       </div>
     </>

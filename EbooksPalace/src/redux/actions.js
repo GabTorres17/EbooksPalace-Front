@@ -60,3 +60,14 @@ export const setUserProfile = (userProfile) => ({
     payload: userProfile,
   };
 }; */
+
+
+export const userAdmin = async ()=>{
+  const response = await axios.put(`/users/${id}/status/admin`)
+}
+export  const userCustomer = async ()=>{
+  const response = await axios.put(`/users/${id}/status/customer`)
+}
+export const userBan = async ()=>{
+  const response = await axios.put(`/users/${id}/status/ban`)
+}
