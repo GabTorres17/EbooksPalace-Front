@@ -22,12 +22,12 @@ const NavBar = () => {
       </div>
       <div className="navbar-left">
         <Link to="/home">
-          <button>Home</button>
+          <button className='button'>Home</button>
         </Link>
       </div>
       <div>
         <Link to="/form">
-          <button>Crear Libro</button>
+          <button className='button'>Crear Libro</button>
         </Link>
       </div>
       <div>
