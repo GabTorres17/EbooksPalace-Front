@@ -13,9 +13,9 @@ export default function validate(input) {
     if (!input.editorial.length) {
         errors.editorial = "Debe ingresar un nombre de editorial"
     } else {
-        const lettersRegexp = /^[a-zA-Z]+$/;
+        const alphanumericSymbolRegexp2 = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\sáéíóúÁÉÍÓÚñÑüÜ]*$/;
 
-        if (!lettersRegexp.test(input.editorial)) errors.editorial = "El nombre sólo puede contener letras"
+        if (!alphanumericSymbolRegexp2.test(input.name)) errors.name = "El nombre colocado tiene caracteres no permitidos"
     }
 
     if (!input.category) {
