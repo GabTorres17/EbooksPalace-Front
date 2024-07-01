@@ -7,6 +7,8 @@ import Cart from './pages/Cart/Cart.jsx'
 import Checkout from './pages/Checkout/Checkout.jsx'
 import NavBar from './components/Nav/Nav.jsx'
 import Dashboard from './pages/dashboard/Dashboard.jsx'
+import PrivateRoute from './components/private/PrivateRoute.jsx'
+import  CheckUsers  from './pages/dashboard/CheckUsers.jsx'
 function App() {
 
   return (
@@ -20,7 +22,11 @@ function App() {
           <Route path='/form' element={<Form />} />
           <Route path='/cartitem' element={<Cart></Cart>} />
           <Route path='/checkout' element={<Checkout></Checkout>} />
-          <Route path='/admin' element={<Dashboard></Dashboard>} />
+          <Route path="/admin" element={<Dashboard />}/>
+          <Route path="/admin/checkusers" element={<CheckUsers/>} />
+
+
+      
         </Routes>
       </div>
     </>

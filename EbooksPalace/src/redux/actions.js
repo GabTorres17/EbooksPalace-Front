@@ -8,7 +8,7 @@ export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const addToCart = (product) => async (dispatch) => {
   try {
-    const response = await axios.post('http://localhost:3001/cart', {
+    const response = await axios.post('https://ebookspalace.onrender.com/cart', {
       userId: product.userId,
       bookId: product.bookId,
     });
@@ -26,7 +26,7 @@ export const addToCart = (product) => async (dispatch) => {
 export const removeItem = (userId, bookId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:3001/remove', {
+      const response = await axios.post('https://ebookspalace.onrender.com/remove', {
         userId,
         bookId
       });
@@ -46,7 +46,7 @@ export const removeItem = (userId, bookId) => {
 export const emptyCart = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete('http://localhost:3001/cart/empty', {
+      const response = await axios.delete('https://ebookspalace.onrender.com/empty', {
         data: { userId }
       });
       dispatch({
@@ -80,11 +80,17 @@ export const setUserProfile = (userProfile) => ({
 
 
 export const userAdmin = async ()=>{
-  const response = await axios.put(`/users/${id}/status/admin`)
+  const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/admin`);
+  return response.data;
+ 
 }
 export  const userCustomer = async ()=>{
-  const response = await axios.put(`/users/${id}/status/customer`)
+  const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/customer`)
+  return response.data;
 }
 export const userBan = async ()=>{
-  const response = await axios.put(`/users/${id}/status/ban`)
+  const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/ban`)
+  return response.data;
 }
+
+
