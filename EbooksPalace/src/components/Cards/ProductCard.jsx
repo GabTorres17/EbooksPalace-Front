@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/actions';
 import styles from './ProductCard.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ id, name, price, image }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleAddToCart = async () => {
     try {
@@ -20,19 +21,21 @@ const ProductCard = ({ id, name, price, image }) => {
       const userId = parsedUserProfile.id;
 
       const product = {
-        userId, 
+        userId,
         bookId: id,
         amount: 1,
       };
- 
+
       await dispatch(addToCart(product));
-    
+
       setError('');
+      navigate('/cartitem');
+
     } catch (error) {
       setError(error.response?.data?.message || 'Error al agregar el libro al carrito');
     }
   };
-  
+
   return (
     <div className={styles.card}>
       <Link className={styles.Info} to={`/detail/${id}`}>
@@ -42,7 +45,7 @@ const ProductCard = ({ id, name, price, image }) => {
           <div className={styles.price}><p>{`$${price}`}</p></div>
         </div>
       </Link>
-      
+
       <button onClick={handleAddToCart}>Add to Cart</button>
       {error && <p className={styles.error}>{error}</p>}
     </div>

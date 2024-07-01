@@ -33,6 +33,11 @@ const NavBar = () => {
       <div>
         {isAuthenticated ? <>
           <Profile />
+          <div className='downloads'>
+            <Link to='/downloads'>
+              <button>Descargas</button>
+            </Link>
+          </div>
           <LogoutButton />
         </> : <LoginButton />}
       </div>

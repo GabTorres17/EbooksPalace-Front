@@ -6,12 +6,13 @@ import Form from './pages/Form/Form.jsx'
 import Cart from './pages/Cart/Cart.jsx'
 import Checkout from './pages/Checkout/Checkout.jsx'
 import NavBar from './components/Nav/Nav.jsx'
+import Downloads from './pages/Downloads/Downloads.jsx'
 function App() {
 
   return (
     <>
       <div>
-      <NavBar/>
+        <NavBar />
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/home' element={<Home />} />
@@ -19,6 +20,7 @@ function App() {
           <Route path='/form' element={<Form />} />
           <Route path='/cartitem' element={<Cart></Cart>} />
           <Route path='/checkout' element={<Checkout></Checkout>} />
+          <Route path='/downloads' element={<Downloads></Downloads>} />
         </Routes>
       </div>
     </>
