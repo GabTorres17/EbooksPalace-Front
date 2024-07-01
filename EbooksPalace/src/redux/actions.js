@@ -33,7 +33,6 @@ export const removeItem = (userId, bookId) => {
         userId,
         bookId
       });
-      console.log('Respuesta del servidor:', response);
       if (response.status === 200) {
         dispatch({
           type: 'REMOVE_ITEM',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginButton } from '../Login/Login';
 import { Profile } from '../Profile/Profile';
 import { LogoutButton } from '../Logout/Logout';
@@ -8,10 +8,17 @@ import logo from '../Images/logo.png';
 import carrito from '../Images/carrito.png';
 import './NavBar.css';
 
-
 const NavBar = () => {
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
 
-  const { isAuthenticated } = useAuth0();
+  const handleCartClick = () => {
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    } else {
+      navigate('/cartitem');
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -42,7 +49,13 @@ const NavBar = () => {
         </> : <LoginButton />}
       </div>
       <div className="navbar-right">
-        <Link to="/cartitem"><img src={carrito} alt="Carrito de Compras" className="shopping-cart" /></Link>
+        <img
+          src={carrito}
+          alt="Carrito de Compras"
+          className="shopping-cart"
+          onClick={handleCartClick}
+          style={{ cursor: 'pointer' }}
+        />
       </div>
     </nav>
   );

@@ -2,18 +2,32 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/actions';
 import styles from './ProductCard.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ProductCard = ({ id, name, price, image }) => {
+
   const dispatch = useDispatch();
+  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleAddToCart = async () => {
+    if (isLoading) {
+      return;
+    }
+
+    if (!isAuthenticated) {
+      setError('Usuario no autenticado. Por favor, inicie sesión.');
+      await loginWithRedirect();
+      return;
+    }
+
     try {
       const storedUserProfile = localStorage.getItem('userProfile');
       if (!storedUserProfile) {
         setError('Usuario no autenticado. Por favor, inicie sesión.');
+        await loginWithRedirect();
         return;
       }
 
