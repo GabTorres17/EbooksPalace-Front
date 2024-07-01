@@ -139,7 +139,7 @@ const Filters = () => {
         <form className={styles.filterForm}>
           <label className={styles.searchBar}>
             Buscar:
-            <input type="text" value={searchValue} onChange={handleSearchValueChange} />
+            <input type="text" placeholder="Nombre/Autor/Editorial" value={searchValue} onChange={handleSearchValueChange} />
           </label>
         </form>
       </div>
