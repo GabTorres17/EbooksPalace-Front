@@ -9,10 +9,13 @@ body {
     align-items: center;
     background-color: #150B2D;
     padding: 10px 20px;
-    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-left, .navbar-center, .navbar-right {
+
+.navbar-left,
+.navbar-center,
+.navbar-right {
     display: flex;
     align-items: center;
 }

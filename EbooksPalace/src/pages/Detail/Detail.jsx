@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from '../../components/Nav/Nav';
 import './Detail.css';
+import { Link } from 'react-router-dom';
+import { addToCart } from '../../redux/actions';
 
 const Detail = () => {
   const { id } = useParams();
@@ -28,9 +30,11 @@ const Detail = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading book details</div>;
 
+
+
   return (
     <div>
-      <NavBar />
+     
       <div className="detalle-producto">
         {info ? (
           <>
@@ -53,7 +57,7 @@ const Detail = () => {
               <h3>Autor:</h3> 
               <h4>{info.author}</h4>
               <br />
-              <button>Agregar al Carrito</button>
+              <Link to="/cartitem"><button>Add to Cart</button> </Link>
             </div>
           </>
         ) : (
