@@ -52,7 +52,7 @@ const Cart = () => {
 
   if (!Array.isArray(items) || items.length === 0) {
     return <div>No hay artículos en el carrito.</div>;
-  };
+  }
 
   return (
     <div>
@@ -66,14 +66,14 @@ const Cart = () => {
               <p>{item.price}</p>
             </div>
             <div>
-              <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+              <button onClick={() => handleRemoveItem(item.id)}>Eliminar</button>
             </div>
           </div>
         ))}
 
         <Link to="/checkout"><button>Comprar</button></Link>
       </div>
-      <button onClick={handleClearCart}>Clear Cart</button>
+      <button onClick={handleClearCart}>Vaciar Carrito</button>
       <ToastContainer />
     </div>
   );

@@ -11,26 +11,6 @@ export const LoginButton = () => {
         await loginWithRedirect();
     };
 
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         toast.success('Se inició sesión correctamente', {
-    //             position: "top-right",
-    //             autoClose: 5000,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //             theme: "light",
-    //             transition: Bounce,
-    //         });
-    //     }
-    // }, [isAuthenticated]);
 
-    return (
-        <div>
-            {/* <ToastContainer /> */}
-            <button className='button' onClick={handleLogin}>Login</button>
-        </div>
-    );
+    return <button onClick={handleLogin}>Ingrese a su Cuenta</button>
 };

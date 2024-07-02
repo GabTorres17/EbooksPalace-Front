@@ -6,28 +6,5 @@ import 'react-toastify/dist/ReactToastify.css';
 export const LogoutButton = () => {
     const { logout } = useAuth0();
 
-    const handleLogout = () => {
-        toast.success('Se cerro sesión correctamente', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-        });
-
-        setTimeout(() => {
-            logout({ returnTo: window.location.origin });
-        }, 3000); // Espera para mostrar el toast antes de redirigir
-    };
-
-     return (
-        <div>
-            <ToastContainer />
-            <button className='button' onClick={handleLogout}>Logout</button>
-        </div>
-    );
+    return <button onClick={() => logout({ returnTo: window.location.origin })}>Cerrar Sesión</button>
 }
