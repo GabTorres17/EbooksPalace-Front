@@ -59,8 +59,7 @@ const ProductCard = ({ id, name, price, image }) => {
           <div className={styles.price}><p>{`$${price}`}</p></div>
         </div>
       </Link>
-
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button onClick={handleAddToCart}>Añadir al Carrito</button>
       {error && <p className={styles.error}>{error}</p>}
     </div>
   );

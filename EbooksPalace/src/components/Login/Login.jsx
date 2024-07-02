@@ -10,5 +10,5 @@ export const LoginButton = () => {
     };
 
 
-    return <button onClick={handleLogin}>Login</button>
+    return <button onClick={handleLogin}>Ingrese a su Cuenta</button>
 };
