@@ -27,11 +27,11 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         cart: [],
       };
-    case UPDATE_QUANTITY:
-      newCart = state.cart.map(item =>
-        item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
-      );
-      localStorage.setItem('cart', JSON.stringify(newCart));
+    // case UPDATE_QUANTITY:
+    //   newCart = state.cart.map(item =>
+    //     item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
+    //   );
+    //   localStorage.setItem('cart', JSON.stringify(newCart));
       return {
         ...state,
         cart: newCart,
