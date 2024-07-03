@@ -1,11 +1,16 @@
-.button{
-    background-color: #150B2D;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+
+/* LogoutButton.css */
+
+.logout-button {
+  margin-left: auto; /* Mueve el botón hacia la derecha */
+  padding: 10px 20px;
+  background-color: #150B2D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.button:hover {
-    background-color: #3521a3;
+
+.logout-button:hover {
+  background-color: #3521a3;
 }

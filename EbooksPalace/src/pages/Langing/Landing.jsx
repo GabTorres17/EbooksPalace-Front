@@ -7,13 +7,15 @@ import portada from '../../components/Images/portada.png'
 import style from './Landing.module.css'
 import NavBar from '../../components/Nav/Nav'
 import { Link } from 'react-router-dom'
+// import MainPage from '../../components/Reviews/MainPage'
+import ImageCarousel from '../../components/Carousel/Carousel'
 
 
 const Landing = () => {
   return (
     <div className={style.contenedor}>
     
-      <img className={style.img} src={foto1} />
+      <ImageCarousel/>
       
 
       <div className={style.contenedorexterno}>
@@ -41,7 +43,7 @@ const Landing = () => {
 
 
 
-      <img className={style.img2} src={foto3} />
+      {/* <MainPage /> */}
       <div className={style.contenedorexterno}>
 
         <div className={style.contenedor2}>
@@ -64,7 +66,7 @@ const Landing = () => {
           </Link>
         </div>
       </div>
-
+      
     </div>
   )
 }

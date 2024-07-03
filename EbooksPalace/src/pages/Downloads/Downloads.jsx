@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPaidBooks } from '../../redux/actions';
+import styles from './Downloads.module.css';
 import axios from 'axios';
 import styles from './Downloads.module.css';
 

@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Bounce } from 'react-toastify'; // Importar Bounce si no se ha importado aún
+import './logout.css'; // Importar el archivo CSS creado
 
 export const LogoutButton = () => {
     const { logout } = useAuth0();
@@ -24,8 +25,9 @@ export const LogoutButton = () => {
 
     return (
         <>
-            <button onClick={handleLogout}>Cerrar Sesión</button>
+            <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
             <ToastContainer />
         </>
     );
 }
+
