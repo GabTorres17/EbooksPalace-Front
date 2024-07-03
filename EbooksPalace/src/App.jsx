@@ -9,8 +9,9 @@ import Checkout from './pages/Checkout/Checkout.jsx';
 import NavBar from './components/Nav/Nav.jsx';
 import PrivateRoute from './components/privateRoute/privateRoute.jsx';
 import { LoginButton } from './components/Login/Login.jsx';
-
 import Downloads from './pages/Downloads/Downloads.jsx'
+import PaymentSuccess from './pages/Payment Success/Payment.jsx';
+
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
           <Route path='/cartitem' element={<PrivateRoute element={<Cart />} />} />
           <Route path='/checkout' element={<PrivateRoute element={<Checkout />} />} />
           <Route path='/downloads' element={<Downloads></Downloads>} />
+          <Route path='/payment-success' element={<PaymentSuccess />} />
         </Routes>
       </div>
     </>
