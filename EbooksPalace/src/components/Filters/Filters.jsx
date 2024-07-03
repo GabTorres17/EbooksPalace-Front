@@ -214,11 +214,11 @@ const Filters = () => {
           ))}
         </div>
         <div className={styles.pagination}>
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          <button  onClick={handlePrevPage} disabled={currentPage === 1}>
             Anterior
           </button>
           {renderPagination()}
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          <button  onClick={handleNextPage} disabled={currentPage === totalPages}>
             Siguiente
           </button>
         </div>
