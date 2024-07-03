@@ -1,12 +1,10 @@
 import React, { useState, useRef } from 'react';
 import './Form.css';
 import validate from "./validate";
-import NavBar from '../../components/Nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 const Form = () => {
     const [input, setInput] = useState({
@@ -120,7 +118,7 @@ const Form = () => {
                     image: URL_Image,
                     file: URL_File,
                 });
-                console.log(response)
+              
                 if (response.status === 200) {
                     console.log("Libro creado con éxito", response.data);
                     setSuccessMessage("El libro fue creado exitosamente");

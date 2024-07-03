@@ -55,7 +55,7 @@ const Checkout = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.url) {
-          window.location.href = data.url;  // Redirige a Stripe
+          window.location.href = data.url;
         } else {
           console.error("Error: URL de redirección no encontrada.");
         }
