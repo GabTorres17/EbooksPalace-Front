@@ -32,6 +32,11 @@ const NavBar = () => {
           <button>Tienda</button>
         </Link>
       </div>
+      <div className="navbar-left">
+        <Link to="/admin">
+          <button>Administrador</button>
+        </Link>
+      </div>
       <div>
         {isAuthenticated ? <>
           <Profile />

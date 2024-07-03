@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import './Form.css';
-import validate from "./validate";
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import validate from "./validate";
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Form.css';
 
 const Form = () => {
     const [input, setInput] = useState({
@@ -171,6 +171,11 @@ const Form = () => {
         <div>
             <ToastContainer />
             <div className="contenedor">
+                <div className="boton">
+                    <Link to="/admin">
+                        <button>Atras</button>
+                    </Link>
+                </div>
                 <form onSubmit={handleSubmit} className="formulario">
                     <h2 className="title">Formulario de Libro</h2>
                     <label>Título:</label>

@@ -1,31 +1,29 @@
-
-import From from "../Form/Form"
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import UserList from "./UserList"
-import BookList from './BookList';
-const dashboardAdmin = ()=>{
+
+const dashboardAdmin = () => {
+
   const user = useSelector((state) => state.user);
 
   if (user.role === "Administrador") {
     return <Outlet />;
   } else {
-    
+
   }
-    return (
+  return (
+    <div>
+      <h1>Panel de Administración</h1>
       <div>
-        <h1>Panel de Administración</h1>
-        <Link to="/form"><button>Create Book</button></Link>
-
-        <h1>Lista de Usuarios</h1>
-        <UserList />
-
-
-        <h1>Lista de libros</h1>
-        <BookList />
+        <Link to="/admin/users">
+          <button>Lista de Usuarios</button>
+        </Link>
       </div>
-
-      
-    );
+      <div>
+        <Link to="/admin/books">
+          <button>Lista de Libros</button>
+        </Link>
+      </div>
+    </div>
+  );
 }
 export default dashboardAdmin;
