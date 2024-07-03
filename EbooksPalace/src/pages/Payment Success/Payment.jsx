@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { EMPTY_CART } from '../../redux/actions';
 
 const PaymentSuccess = () => {
     const { user } = useAuth0();
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const userLS = JSON.parse(localStorage.getItem('userProfile'));
     const userId = userLS.id;
@@ -14,7 +17,7 @@ const PaymentSuccess = () => {
     useEffect(() => {
         const updateCartStatus = async () => {
             try {
-                const resp = await axios.get('http://localhost:3001/carts');
+                const resp = await axios.get('https://ebookspalace.onrender.com/carts');
                 if (!resp.data || resp.data.length === 0) {
                     console.error("No se encontraron carritos");
                     return;
@@ -34,10 +37,12 @@ const PaymentSuccess = () => {
                     return;
                 }
 
-                const response = await axios.put(`http://localhost:3001/carts/${cartId}/status`);
+                const response = await axios.put(`https://ebookspalace.onrender.com/carts/${cartId}/status`);
 
                 if (response.status === 200) {
                     console.log('Estado del carrito actualizado exitosamente');
+                    localStorage.removeItem('cart');
+                    dispatch({ type: EMPTY_CART });
                     navigate('/home');
                 } else {
                     console.error('Error al actualizar el estado del carrito:', response.data.message);

@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 import './Form.css';
 import validate from "./validate";
-import NavBar from '../../components/Nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Form = () => {
     const [input, setInput] = useState({
@@ -64,6 +65,17 @@ const Form = () => {
     const changeUploadFile = async (e) => {
         if (URL_File) {
             alert("Primero elimine el archivo actual antes de subir uno nuevo.");
+            toast.warn('Primero elimine la imagen actual antes de subir una nueva.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
             return;
         }
 
@@ -101,20 +113,42 @@ const Form = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await axios.post("http://localhost:3001/books", {
+                const response = await axios.post("https://ebookspalace.onrender.com/books", {
                     ...input,
                     image: URL_Image,
                     file: URL_File,
                 });
-                console.log(response)
+
                 if (response.status === 200) {
                     console.log("Libro creado con éxito", response.data);
                     setSuccessMessage("El libro fue creado exitosamente");
+                    toast.success('Libro creado con éxito.', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
                     navigate("/");
                 }
             } catch (error) {
                 console.error("Error al crear el libro", error);
                 setErrors({ submit: "Hubo un error al crear el libro. Inténtalo de nuevo." });
+                toast.error('Hubo un error al crear el libro. Inténtalo de nuevo.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             }
         }
     };
@@ -135,6 +169,7 @@ const Form = () => {
 
     return (
         <div>
+            <ToastContainer />
             <div className="contenedor">
                 <form onSubmit={handleSubmit} className="formulario">
                     <h2 className="title">Formulario de Libro</h2>
