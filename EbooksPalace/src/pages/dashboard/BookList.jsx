@@ -1,9 +1,10 @@
-// BookList.jsx
 import React, { useEffect, useState } from 'react';
-import {getAllBooks}  from './CheckBooks';
 import BookCard from './BookCard';
+import getAllBooks from './CheckBooks';
+import { Link } from 'react-router-dom';
 
 const BookList = () => {
+
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -17,6 +18,19 @@ const BookList = () => {
 
   return (
     <div className="book-list">
+      <div>
+        <Link to="/admin">
+          <button>Atras</button>
+        </Link>
+      </div>
+      <div>
+        <h1>Lista de libros</h1>
+      </div>
+      <div>
+        <Link to="/form">
+          <button>Crear Libro</button>
+        </Link>
+      </div>
       {books.map(book => (
         <BookCard key={book.id} book={book} />
       ))}

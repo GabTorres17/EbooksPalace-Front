@@ -1,14 +1,15 @@
-// UserList.jsx
 import React, { useEffect, useState } from 'react';
-import  CheckUsers  from './CheckUsers';
 import UserCard from './UserCard';
+import getAllUsers  from './CheckUsers';
+import { Link } from 'react-router-dom';
 
 const UserList = () => {
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const data = await CheckUsers();
+      const data = await getAllUsers();
       setUsers(data);
     };
 
@@ -17,6 +18,14 @@ const UserList = () => {
 
   return (
     <div className="user-list">
+      <div>
+        <Link  to="/admin">
+          <button>Atras</button>
+        </Link>
+      </div>
+      <div>
+        <h1>Lista de Usuarios</h1>
+      </div>
       {users.map(user => (
         <UserCard key={user.id} user={user} />
       ))}

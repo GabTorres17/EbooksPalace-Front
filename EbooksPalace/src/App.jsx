@@ -7,12 +7,14 @@ import Form from './pages/Form/Form.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import Checkout from './pages/Checkout/Checkout.jsx';
 import NavBar from './components/Nav/Nav.jsx';
-import Dashboard from './pages/dashboard/Dashboard.jsx'
 import PrivateRoute from './components/privateRoute/privateRoute.jsx';
 import { LoginButton } from './components/Login/Login.jsx';
-import Downloads from './pages/Downloads/Downloads.jsx'
-import  CheckUsers  from './pages/dashboard/CheckUsers.jsx'
+import Downloads from './pages/Downloads/Downloads.jsx';
+import  CheckUsers  from './pages/dashboard/CheckUsers.jsx';
 import PaymentSuccess from './pages/Payment Success/Payment.jsx';
+import Dashboard from './pages/dashboard/Dashboard.jsx';
+import BookList from './pages/dashboard/BookList.jsx';
+import UserList from './pages/dashboard/UserList.jsx';
 
 function App() {
   return (
@@ -24,13 +26,15 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/form' element={<Form />} />
-          <Route path="/admin" element={<Dashboard />}/>
           <Route path="/checkusers" element={<CheckUsers/>} />
           <Route path='/login' element={<LoginButton />} />
           <Route path='/cartitem' element={<PrivateRoute element={<Cart />} />} />
           <Route path='/checkout' element={<PrivateRoute element={<Checkout />} />} />
-          <Route path='/downloads' element={<Downloads></Downloads>} />
+          <Route path='/downloads' element={<Downloads />} />
           <Route path='/payment-success' element={<PaymentSuccess />} />
+          <Route path="/admin" element={<Dashboard />}/>
+          <Route path="/admin/books" element={<BookList />}/>
+          <Route path="/admin/users" element={<UserList />}/>
         </Routes>
       </div>
     </>
