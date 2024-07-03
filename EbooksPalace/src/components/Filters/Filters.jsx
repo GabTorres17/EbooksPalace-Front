@@ -139,7 +139,7 @@ const Filters = () => {
         <form className={styles.filterForm}>
           <label className={styles.searchBar}>
             Buscar:
-            <input type="text" value={searchValue} onChange={handleSearchValueChange} />
+            <input type="text" placeholder="Nombre/Autor/Editorial" value={searchValue} onChange={handleSearchValueChange} />
           </label>
         </form>
       </div>
@@ -214,11 +214,11 @@ const Filters = () => {
           ))}
         </div>
         <div className={styles.pagination}>
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          <button  onClick={handlePrevPage} disabled={currentPage === 1}>
             Anterior
           </button>
           {renderPagination()}
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          <button  onClick={handleNextPage} disabled={currentPage === totalPages}>
             Siguiente
           </button>
         </div>

@@ -5,6 +5,9 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const EMPTY_CART = 'EMPTY_CART';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
+export const FETCH_PAID_BOOKS_REQUEST = 'FETCH_PAID_BOOKS_REQUEST';
+export const FETCH_PAID_BOOKS_SUCCESS = 'FETCH_PAID_BOOKS_SUCCESS';
+export const FETCH_PAID_BOOKS_FAILURE = 'FETCH_PAID_BOOKS_FAILURE';
 
 export const addToCart = (product) => async (dispatch) => {
   try {
@@ -17,7 +20,7 @@ export const addToCart = (product) => async (dispatch) => {
       payload: response.data,
     });
 
-    return response.data; 
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -30,7 +33,6 @@ export const removeItem = (userId, bookId) => {
         userId,
         bookId
       });
-      console.log('Respuesta del servidor:', response);
       if (response.status === 200) {
         dispatch({
           type: 'REMOVE_ITEM',
@@ -59,10 +61,10 @@ export const emptyCart = (userId) => {
   };
 };
 
-export const updateQuantity = (itemId, quantity) => ({
-  type: UPDATE_QUANTITY,
-  payload: { id: itemId, quantity }
-});
+// export const updateQuantity = (itemId, quantity) => ({
+//   type: UPDATE_QUANTITY,
+//   payload: { id: itemId, quantity }
+// });
 
 export const setUserProfile = (userProfile) => ({
   type: SET_USER_PROFILE,
@@ -78,19 +80,27 @@ export const setUserProfile = (userProfile) => ({
   };
 }; */
 
-
-
-
-
 export const getAllCarts = async ()=>{
   const response = await axios.get(`http://localhost:3001/carts`)
   console.log(response.data);
   return response.data
 }
 
-
 export const getAllBooks = async ()=>{
   const response = await axios.get(`http://localhost:3001/books`)
   console.log(response.data);
   return response.data
+}
+
+export const fetchPaidBooks = (userId) => async (dispatch) => {
+  dispatch({ type: FETCH_PAID_BOOKS_REQUEST });
+  try {
+    const response = await axios.get(`http://localhost:3001/paid-cart/${userId}`);
+    dispatch({
+      type: FETCH_PAID_BOOKS_SUCCESS,
+      payload: response.data
+    });
+  } catch (error) {
+    dispatch({ type: FETCH_PAID_BOOKS_FAILURE, error });
+  }
 }
