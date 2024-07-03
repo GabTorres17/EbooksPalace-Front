@@ -43,7 +43,7 @@ const PaymentSuccess = () => {
                     console.log('Estado del carrito actualizado exitosamente');
                     localStorage.removeItem('cart');
                     dispatch({ type: EMPTY_CART });
-                    navigate('/home');
+                    navigate('/downloads');
                 } else {
                     console.error('Error al actualizar el estado del carrito:', response.data.message);
                 }

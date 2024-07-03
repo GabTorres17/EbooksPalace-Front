@@ -48,7 +48,7 @@ export const removeItem = (userId, bookId) => {
 export const emptyCart = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete('https://ebookspalace.onrender.com/empty', {
+      const response = await axios.delete('https://ebookspalace.onrender.com/cart/empty', {
         data: { userId }
       });
       dispatch({
