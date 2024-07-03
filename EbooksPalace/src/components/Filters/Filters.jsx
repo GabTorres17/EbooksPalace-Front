@@ -47,7 +47,7 @@ const Filters = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('https://ebookspalace.onrender.com/categories');
+        const response = await axios.get('http://localhost:3001/categories');
         setCategories(response.data);
       } catch (err) {
         setError(err.message);
