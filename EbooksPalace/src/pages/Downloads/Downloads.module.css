@@ -1,5 +1,3 @@
-/* Downloads.module.css */
-
 .downloads {
     width: 60%;
     margin: 20px auto;
@@ -55,3 +53,38 @@
     font-size: 16px;
   }
   
+/* .downloads {
+    padding: 20px;
+}
+
+.transactionTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.transactionTable th,
+.transactionTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.transactionTable th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.transactionTable td div {
+    margin-bottom: 5px;
+}
+
+.bookInfo {
+    display: flex;
+    align-items: center;
+}
+
+.bookInfo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+} */

@@ -45,7 +45,7 @@ const ProductCard = ({ id, name, price, image }) => {
       await dispatch(addToCart(product));
 
       setError('');
-      toast.success('Producto agregado al carrito!', {
+      toast.success('Libro Agregado al Carrito!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -59,7 +59,7 @@ const ProductCard = ({ id, name, price, image }) => {
 
     } catch (error) {
       setError(error.response?.data?.message || 'Error al agregar el libro al carrito');
-      toast.error('Error al agregar el libro al carrito', {
+      toast.error('Libro esta en el Carrito', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
