@@ -29,12 +29,7 @@ const NavBar = () => {
       </div>
       <div className="navbar-left">
         <Link to="/home">
-          <button>Home</button>
-        </Link>
-      </div>
-      <div>
-        <Link to="/form">
-          <button>Crear Libro</button>
+          <button>Tienda</button>
         </Link>
       </div>
       <div>
@@ -42,7 +37,7 @@ const NavBar = () => {
           <Profile />
           <div className='downloads'>
             <Link to='/downloads'>
-              <button>Descargas</button>
+              <button>Mis Libros</button>
             </Link>
           </div>
           <LogoutButton />
