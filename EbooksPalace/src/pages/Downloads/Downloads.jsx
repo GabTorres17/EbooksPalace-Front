@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPaidBooks } from '../../redux/actions';
-import styles from './Downloads.module.css';
+import styles from './Downloads.module.css'; // Importa el archivo CSS
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 

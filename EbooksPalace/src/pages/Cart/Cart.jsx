@@ -51,29 +51,29 @@ const Cart = () => {
   };
 
   if (!Array.isArray(items) || items.length === 0) {
-    return <div>No hay artículos en el carrito.</div>;
+    return <div className={styles["shopping-cart"]}>No hay artículos en el carrito.</div>;
   }
 
   return (
-    <div>
+    <div className={styles["shopping-cart"]}>
       <h2 className={styles.Title}>Carrito de compras disponible para ser comprado</h2>
       <div>
         {items.map((item) => (
-          <div key={item.id}>
-            <div>
-              <img src={item.image} alt={item.name} />
+          <div key={item.id} className={styles["cart-item"]}>
+            <img src={item.image} alt={item.name} />
+            <div className={styles["cart-item-details"]}>
               <p>{item.name}</p>
-              <p>{item.price}</p>
+              <p>Precio: ${item.price}</p>
             </div>
-            <div>
-              <button onClick={() => handleRemoveItem(item.id)}>Eliminar</button>
-            </div>
+            <button className={styles["remove-button"]} onClick={() => handleRemoveItem(item.id)}>Eliminar</button>
           </div>
         ))}
 
-        <Link to="/checkout"><button>Comprar</button></Link>
+        <div className={styles["buttons-container"]}>
+          <Link to="/checkout" className={styles["link-to-checkout"]}><button>Comprar</button></Link>
+          <button onClick={handleClearCart}>Vaciar Carrito</button>
+        </div>
       </div>
-      <button onClick={handleClearCart}>Vaciar Carrito</button>
       <ToastContainer />
     </div>
   );

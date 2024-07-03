@@ -1,29 +1,22 @@
-/* Downloads.module.css */
+/* checkout.module.css */
 
-.downloads {
-    width: 60%;
+.shoppingCart {
+    width: 50%;
     margin: 20px auto;
-    padding: 20px;
     border: 1px solid #ccc;
+    padding: 20px;
     border-radius: 5px;
     background-color: #f9f9f9;
-    text-align: center;
   }
   
-  .downloads h1 {
+  .title {
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .downloads ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .downloads li {
+  .cartItem {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -31,27 +24,33 @@
     background-color: #f9f9f9;
   }
   
-  .downloads img {
+  .cartItemImage {
     width: 100px;
     height: 150px;
     margin-right: 20px;
   }
   
-  .downloads div {
+  .cartItemDetails {
     flex: 1;
   }
   
-  .downloads button {
+  .checkoutButton {
     padding: 10px 20px;
     background-color: #150B2D;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
   }
   
-  .downloads p {
-    margin-top: 20px;
-    font-size: 16px;
+  .messageBox {
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
   }
   

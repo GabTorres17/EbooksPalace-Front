@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { setUserProfile } from "../../redux/actions";
+import './Profile.css'; // Importar el archivo CSS creado
 
 export const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -11,7 +12,6 @@ export const Profile = () => {
 
     useEffect(() => {
         const fetchUserProfile = async () => {
-
             try {
                 const response = await axios.post('http://localhost:3001/userverify', {
                     name: user.name,
@@ -32,12 +32,13 @@ export const Profile = () => {
                 console.error("Error al verificar/crear usuario:", error.response ? error.response.data : error.message);
             }
         };
+
         const handleUserChange = () => {
             const storedProfile = localStorage.getItem('userProfile');
             if (storedProfile) {
                 try {
                     const parsedProfile = JSON.parse(storedProfile);
-                    if (parsedProfile !== user.email) {
+                    if (parsedProfile.email !== user.email) {
                         localStorage.removeItem('userProfile');
                         fetchUserProfile();
                     } else {
@@ -51,6 +52,7 @@ export const Profile = () => {
                 fetchUserProfile();
             }
         };
+
         if (!isLoading && isAuthenticated && user) {
             handleUserChange();
         }
@@ -66,10 +68,12 @@ export const Profile = () => {
 
     return (
         isAuthenticated && (
-            <div>
-                <img src={userProfile.profilePicture} alt={userProfile.name} />
-                <h2>{userProfile.name}</h2>
-                <p>Email: {userProfile.email}</p>
+            <div className="profile-container">
+                <img src={userProfile.profilePicture} alt={userProfile.name} className="profile-picture" />
+                <div className="profile-details">
+                    <h2 className="profile-name">{userProfile.name}</h2>
+                    <p className="profile-email">Email: {userProfile.email}</p>
+                </div>
             </div>
         )
     );
