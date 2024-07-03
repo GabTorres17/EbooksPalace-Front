@@ -80,14 +80,14 @@ export const setUserProfile = (userProfile) => ({
   };
 }; */
 
-export const getAllCarts = async ()=>{
-  const response = await axios.get(`http://localhost:3001/carts`)
+export const getAllCarts = async () => {
+  const response = await axios.get(`https://ebookspalace.onrender.com/carts`)
   console.log(response.data);
   return response.data
 }
 
-export const getAllBooks = async ()=>{
-  const response = await axios.get(`http://localhost:3001/books`)
+export const getAllBooks = async () => {
+  const response = await axios.get(`https://ebookspalace.onrender.com/books`)
   console.log(response.data);
   return response.data
 }
@@ -95,7 +95,7 @@ export const getAllBooks = async ()=>{
 export const fetchPaidBooks = (userId) => async (dispatch) => {
   dispatch({ type: FETCH_PAID_BOOKS_REQUEST });
   try {
-    const response = await axios.get(`http://localhost:3001/paid-cart/${userId}`);
+    const response = await axios.get(`https://ebookspalace.onrender.com/paid-cart/${userId}`);
     dispatch({
       type: FETCH_PAID_BOOKS_SUCCESS,
       payload: response.data
