@@ -79,18 +79,18 @@ export const setUserProfile = (userProfile) => ({
 }; */
 
 
-export const userAdmin = async ()=>{
-  const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/admin`);
-  return response.data;
- 
-}
-export  const userCustomer = async ()=>{
-  const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/customer`)
-  return response.data;
-}
-export const userBan = async ()=>{
-  const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/ban`)
-  return response.data;
+
+
+
+export const getAllCarts = async ()=>{
+  const response = await axios.get(`http://localhost:3001/carts`)
+  console.log(response.data);
+  return response.data
 }
 
 
+export const getAllBooks = async ()=>{
+  const response = await axios.get(`http://localhost:3001/books`)
+  console.log(response.data);
+  return response.data
+}

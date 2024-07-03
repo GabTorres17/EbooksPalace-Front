@@ -23,7 +23,7 @@ function App() {
           <Route path='/cartitem' element={<Cart></Cart>} />
           <Route path='/checkout' element={<Checkout></Checkout>} />
           <Route path="/admin" element={<Dashboard />}/>
-          <Route path="/admin/checkusers" element={<CheckUsers/>} />
+          <Route path="/checkusers" element={<CheckUsers/>} />
 
 
       
