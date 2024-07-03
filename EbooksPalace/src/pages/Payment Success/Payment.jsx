@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { EMPTY_CART } from '../../redux/actions';
 
 const PaymentSuccess = () => {
     const { user } = useAuth0();
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const userLS = JSON.parse(localStorage.getItem('userProfile'));
     const userId = userLS.id;
@@ -38,6 +41,8 @@ const PaymentSuccess = () => {
 
                 if (response.status === 200) {
                     console.log('Estado del carrito actualizado exitosamente');
+                    localStorage.removeItem('cart');
+                    dispatch({ type: EMPTY_CART });
                     navigate('/home');
                 } else {
                     console.error('Error al actualizar el estado del carrito:', response.data.message);
