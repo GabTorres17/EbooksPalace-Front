@@ -38,10 +38,10 @@ function App() {
            <Route path="/unauthorized" element={<Unauthorized />} />
           
           <Route element={<PrivateRoute />}>
-            <Route path="/admin" element={<Dashboard />} />
+            <Route path="/admin" element={<Dashboard />}  />
           </Route>
-          <Route path="/admin/books" element={<BookList />} />
-          <Route path="/admin/users" element={<UserList />} />
+          <Route path="/admin/books" element={<BookList />}  />
+          <Route path="/admin/users" element={<UserList />}  />
           
           
         </Routes>
