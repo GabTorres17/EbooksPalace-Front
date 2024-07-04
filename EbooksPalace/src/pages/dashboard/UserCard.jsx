@@ -1,10 +1,10 @@
 import React from 'react';
-import { userAdmin, userBan, userCustomer } from './CheckUsers';
+import { userRole, userBan } from './CheckUsers';
 
 const UserCard = ({ user, onUpdate }) => {
 
-  const handleAdmin = async () => {
-    await userAdmin(user.id);
+  const handleRole = async () => {
+    await userRole(user.id);
     onUpdate();
   };
 
@@ -13,19 +13,15 @@ const UserCard = ({ user, onUpdate }) => {
     onUpdate();
   };
 
-  const handleNormalUser = async () => {
-    await userCustomer(user.id);
-    onUpdate();
-  };
 
   return (
     <div className="card">
       <h5 className="card-title">Nombre: {user.name}</h5>
       <p className="card-text">Correo: {user.email}</p>
       <p className="card-text">Rol: {user.role}</p>
-      <button onClick={handleAdmin} disabled={user.role === "Administrador"}> Hacer admin </button>
-      <button onClick={handleBan} disabled={user.role === "Baneado"}> Banear usuario </button>
-      <button onClick={handleNormalUser} disabled={user.role === "Cliente"}> Desbanear / Quitar Admin </button>
+      <button onClick={handleRole} > {user.role === 'Administrador' ? 'Quitar admin' : 'Hacer admin'} </button>
+      <button onClick={handleBan} > {user.role === 'Baneado' ? 'Restablecer usuario' : 'Banear usuario'} </button>
+
     </div>
   );
 };

@@ -7,19 +7,13 @@ const getAllUsers = async () => {
     return response.data
 };
 
-const userAdmin = async (id) => {
+const userRole = async (id) => {
 
-    const response = await axios.put(`http://localhost:3001/users/${id}/status/admin`);
+    const response = await axios.put(`http://localhost:3001/users/${id}/status/role`);
     console.log(response.data);
     return response.data;
 };
 
-const userCustomer = async (id) => {
-
-    const response = await axios.put(`http://localhost:3001/users/${id}/status/customer`)
-    console.log(response.data);
-    return response.data;
-};
 
 const userBan = async (id) => {
 
@@ -28,5 +22,5 @@ const userBan = async (id) => {
     return response.data;
 };
 
-export { getAllUsers, userAdmin, userCustomer, userBan };
+export { getAllUsers, userRole, userBan };
 
