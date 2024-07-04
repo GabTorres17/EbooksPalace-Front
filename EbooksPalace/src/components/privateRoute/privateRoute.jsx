@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const PrivateRoute = ({ element }) => {
-  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+const PrivateRoute = () => {
+ 
+const userl = JSON.parse(localStorage.getItem('userProfile'))
 
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      loginWithRedirect();
-    }
-  }, [isLoading, isAuthenticated, loginWithRedirect]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
+  
+  // Verifica si el usuario tiene el rol de 'Administrador'
+  if (userl?.role === 'Cliente') {
+   
+    return <Navigate to="/unauthorized" />;
   }
 
-  return isAuthenticated ? element : null;
+  return <Outlet />;
 };
 
 export default PrivateRoute;
