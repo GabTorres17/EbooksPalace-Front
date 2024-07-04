@@ -136,12 +136,14 @@ const Filters = () => {
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.searchFilter}>
+        <div className={styles.filtersContainer2}> 
         <form className={styles.filterForm}>
           <label className={styles.searchBar}>
             Buscar:
             <input type="text" placeholder="Nombre/Autor/Editorial" value={searchValue} onChange={handleSearchValueChange} />
           </label>
         </form>
+        </div>
       </div>
       <div className={styles.sideFilters}>
         <form className={styles.filterForm}>
@@ -197,7 +199,7 @@ const Filters = () => {
         </form>
       </div>
       <div className={styles.books}>
-        {error && <p>{error}</p>}
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <div className={styles.booksGrid}>
           {books.map((book) => (
             <ProductCard
@@ -214,11 +216,11 @@ const Filters = () => {
           ))}
         </div>
         <div className={styles.pagination}>
-          <button  onClick={handlePrevPage} disabled={currentPage === 1}>
+          <button onClick={handlePrevPage} disabled={currentPage === 1} className={styles.pageButton}>
             Anterior
           </button>
           {renderPagination()}
-          <button  onClick={handleNextPage} disabled={currentPage === totalPages}>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages} className={styles.pageButton}>
             Siguiente
           </button>
         </div>

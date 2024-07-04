@@ -9,7 +9,8 @@ import NavBar from '../../components/Nav/Nav'
 import { Link } from 'react-router-dom'
 // import MainPage from '../../components/Reviews/MainPage'
 import ImageCarousel from '../../components/Carousel/Carousel'
-
+import Review from '../../components/Reviews/Review'
+import Footer from '../../components/Footer/Footer'
 
 const Landing = () => {
   return (
@@ -22,7 +23,7 @@ const Landing = () => {
 
         <div className={style.contenedor2}>
 
-          <h3 className={style.contenedor2h3}>Education</h3>
+          <h3 className={style.contenedor2h3}>Educación</h3>
           <Link to="/home">
             <img className={style.contenedor2img} src={"https://images.cdn2.buscalibre.com/fit-in/360x360/dc/54/dc54141fee3ac921b44105dd29f322d5.jpg"} />
           </Link>
@@ -43,7 +44,9 @@ const Landing = () => {
 
 
 
-      {/* <MainPage /> */}
+      <Review/>
+      <br/>
+      <br/>
       <div className={style.contenedorexterno}>
 
         <div className={style.contenedor2}>
@@ -54,19 +57,20 @@ const Landing = () => {
           </Link>
         </div>
         <div className={style.contenedor2}>
-          <h3 className={style.contenedor2h3}>Comedy</h3>
+          <h3 className={style.contenedor2h3}>Comedia</h3>
           <Link to="/home">
             <img className={style.contenedor2img} src={"https://images.cdn2.buscalibre.com/fit-in/360x360/b8/88/37e56c045d96fe779e3d46531f33f602.jpg"} />
           </Link>
         </div>
         <div className={style.contenedor2}>
-          <h3 className={style.contenedor2h3}>Self-Help</h3>
+          <h3 className={style.contenedor2h3}>Autoayuda</h3>
           <Link to="/home">
             <img className={style.contenedor2img} src={"https://images.cdn2.buscalibre.com/fit-in/360x360/64/65/646518b627e363ad6ad7f41bfa0896f3.jpg"} />
           </Link>
         </div>
       </div>
-      
+      <br/>
+      <Footer />
     </div>
   )
 }
