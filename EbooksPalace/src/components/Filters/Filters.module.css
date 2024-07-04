@@ -6,7 +6,7 @@
 }
 .searchBar{
   width: 25%;
-  margin-left: 0px;
+  margin-left: 500px;
 }
 
 .filtersContainer {
@@ -16,17 +16,13 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 130px;
 }
 
 .searchFilter {
-  border-radius: 8px;
-  margin-top: 0px;
-  background-color: rgb(21, 11, 45);
-  width: 200px; /* Ocupa el ancho completo del contenedor */
+  margin-top: -20px;
+background-color: rgb(21, 11, 45);
+  width: 120%; /* Ocupa el ancho completo del contenedor */
   margin-bottom: 20px; /* Espacio entre el filtro de búsqueda y los demás filtros */
-  margin-left: 0;
-  margin-left: -1100px;
   text-align: center; /* Centra el contenido del filtro de búsqueda horizontalmente */
 }
 
@@ -39,21 +35,19 @@
 }
 
 .filterForm {
- 
   color: #ffffff;
   background-color:rgb(21, 11, 45);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%; /* Ocupa el ancho completo del contenedor */
-  position:relative;
- 
+  position:static;
 }
 
 .filterForm label {
   margin-bottom: 10px;
   display: block;
-  width: 100%;
+  
 }
 
 .filterForm input,
@@ -79,13 +73,12 @@
 }
 
 .filterForm button:hover {
-  
   background-color: #3521a3;
 }
 
 .books {
   
-  margin-top: -630px;
+  margin-top: -500px;
   width: 60%; /* Ocupa el 70% del ancho del contenedor principal */
 }
 

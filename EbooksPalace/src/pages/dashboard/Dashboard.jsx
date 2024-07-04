@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import  style from "./Dashboard.module.css";
 
 const dashboardAdmin = () => {
 
@@ -12,7 +11,7 @@ const dashboardAdmin = () => {
 
   }
   return (
-    <div className={style.dash}>
+    <div>
       <h1>Panel de Administración</h1>
       <div>
         <Link to="/admin/users">
