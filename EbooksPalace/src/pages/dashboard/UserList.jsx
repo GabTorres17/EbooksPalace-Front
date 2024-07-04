@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import UserCard from './UserCard';
-import getAllUsers  from './CheckUsers';
+import { getAllUsers } from './CheckUsers';
 import { Link } from 'react-router-dom';
 
 const UserList = () => {
-
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const data = await getAllUsers();
-      setUsers(data);
-    };
+  const fetchUsers = async () => {
+    const data = await getAllUsers();
+    setUsers(data);
+  };
 
+  useEffect(() => {
     fetchUsers();
   }, []);
 
   return (
     <div className="user-list">
       <div>
-        <Link  to="/admin">
+        <Link to="/admin">
           <button>Atras</button>
         </Link>
       </div>
@@ -27,7 +26,7 @@ const UserList = () => {
         <h1>Lista de Usuarios</h1>
       </div>
       {users.map(user => (
-        <UserCard key={user.id} user={user} />
+        <UserCard key={user.id} user={user} onUpdate={fetchUsers} />
       ))}
     </div>
   );
