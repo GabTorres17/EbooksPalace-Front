@@ -1,23 +1,25 @@
 import axios from "axios";
-const CheckUsers = async () => {
 
-    const response = await axios.get(`https://ebookspalace.onrender.com/users`)
-    console.log(response.data);
+const getAllUsers = async () => {
+
+    const response = await axios.get(`http://localhost:3001/users`)
+    //     console.log(response.data);
     return response.data
-}
-const userAdmin = async () => {
-    const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/admin`);
+};
+
+const userRole = async (id) => {
+
+    const response = await axios.put(`http://localhost:3001/users/${id}/status/rol`);
     console.log(response.data);
     return response.data;
-}
-const userCustomer = async () => {
-    const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/customer`)
-    return response.data;
-}
-const userBan = async () => {
-    const response = await axios.put(`https://ebookspalace.onrender.com/users/${id}/status/ban`)
-    return response.data;
-}
+};
 
-export default CheckUsers;
 
+const userBan = async (id) => {
+
+    const response = await axios.put(`http://localhost:3001/users/${id}/status/ban`)
+    console.log(response.data);
+    return response.data;
+};
+
+export { getAllUsers, userRole, userBan };
