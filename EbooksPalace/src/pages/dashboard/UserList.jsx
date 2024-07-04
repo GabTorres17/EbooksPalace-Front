@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UserCard from './UserCard';
 import getAllUsers  from './CheckUsers';
 import { Link } from 'react-router-dom';
-
+import  style from "./Dashboard.module.css";
 const UserList = () => {
 
   const [users, setUsers] = useState([]);
@@ -17,7 +17,7 @@ const UserList = () => {
   }, []);
 
   return (
-    <div className="user-list">
+    <div className={style.UserList}>
       <div>
         <Link  to="/admin">
           <button>Atras</button>
