@@ -1,0 +1,88 @@
+.review-container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .review-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .review-form {
+    margin-bottom: 20px;
+  }
+  
+  .review-exists {
+    margin-bottom: 20px;
+  }
+  
+  .review-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .review-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .review-button {
+    padding: 10px 20px;
+    background-color: #150B2D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .review-unpaid {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .review-history {
+    margin-top: 20px;
+  }
+  
+  .review-history-title {
+    margin-bottom: 10px;
+  }
+  
+  .review-history-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .review-history-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .review-edit-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #150B2D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .review-error {
+    color: red;
+    font-weight: bold;
+  }
+  

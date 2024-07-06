@@ -11,7 +11,7 @@ export const FETCH_PAID_BOOKS_FAILURE = 'FETCH_PAID_BOOKS_FAILURE';
 
 export const addToCart = (product) => async (dispatch) => {
   try {
-    const response = await axios.post('https://ebookspalace.onrender.com/cart', {
+    const response = await axios.post('http://localhost:3001/cart', {
       userId: product.userId,
       bookId: product.bookId,
     });
@@ -29,7 +29,7 @@ export const addToCart = (product) => async (dispatch) => {
 export const removeItem = (userId, bookId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('https://ebookspalace.onrender.com/remove', {
+      const response = await axios.post('http://localhost:3001/remove', {
         userId,
         bookId
       });
@@ -48,7 +48,7 @@ export const removeItem = (userId, bookId) => {
 export const emptyCart = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete('https://ebookspalace.onrender.com/cart/empty', {
+      const response = await axios.delete('http://localhost:3001/cart/empty', {
         data: { userId }
       });
       dispatch({
@@ -81,13 +81,13 @@ export const setUserProfile = (userProfile) => ({
 }; */
 
 export const getAllCarts = async () => {
-  const response = await axios.get(`https://ebookspalace.onrender.com/carts`)
+  const response = await axios.get(`http://localhost:3001/carts`)
   console.log(response.data);
   return response.data
 }
 
 export const getAllBooks = async () => {
-  const response = await axios.get(`https://ebookspalace.onrender.com/books`)
+  const response = await axios.get(`http://localhost:3001/books`)
   console.log(response.data);
   return response.data
 }
@@ -95,7 +95,7 @@ export const getAllBooks = async () => {
 export const fetchPaidBooks = (userId) => async (dispatch) => {
   dispatch({ type: FETCH_PAID_BOOKS_REQUEST });
   try {
-    const response = await axios.get(`https://ebookspalace.onrender.com/paid-cart/${userId}`);
+    const response = await axios.get(`http://localhost:3001/paid-cart/${userId}`);
     dispatch({
       type: FETCH_PAID_BOOKS_SUCCESS,
       payload: response.data
