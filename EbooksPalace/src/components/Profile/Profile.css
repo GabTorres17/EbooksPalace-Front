@@ -1,28 +1,27 @@
-/* Profile.css */
-
 .profile-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%; /* Hace que la imagen sea redonda */
-    margin-right: 20px; /* Espacio a la derecha de la imagen */
-  }
-  
-  .profile-details {
-    flex: 1; /* Ocupa todo el espacio restante */
-  }
-  
-  .profile-name {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-  }
-  
-  .profile-email {
-    font-size: 1rem;
-    color: #888;
-  }
-  
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 50px; /* Ajusta el tamaño de la foto de perfil según tus preferencias */
+  height: 50px; /* Ajusta el tamaño de la foto de perfil según tus preferencias */
+  border-radius: 50%; /* Para hacerla circular, si es necesario */
+  margin-right: 10px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-size: 16px; /* Ajusta el tamaño de la letra del nombre */
+  margin: 0;
+}
+
+.profile-email {
+  font-size: 14px; /* Ajusta el tamaño de la letra del correo electrónico */
+  margin: 0;
+  color: #666; /* Color opcional para el correo electrónico */
+}

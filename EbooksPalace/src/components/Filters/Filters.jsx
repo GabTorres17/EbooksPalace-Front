@@ -136,14 +136,17 @@ const Filters = () => {
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.searchFilter}>
-        <div className={styles.filtersContainer2}> 
         <form className={styles.filterForm}>
           <label className={styles.searchBar}>
             Buscar:
-            <input type="text" placeholder="Nombre/Autor/Editorial" value={searchValue} onChange={handleSearchValueChange} />
+            <input
+              type="text"
+              placeholder="Nombre/Autor/Editorial"
+              value={searchValue}
+              onChange={handleSearchValueChange}
+            />
           </label>
         </form>
-        </div>
       </div>
       <div className={styles.sideFilters}>
         <form className={styles.filterForm}>
@@ -156,7 +159,6 @@ const Filters = () => {
               placeholder="Mínimo"
             />
           </label>
-          <br />
           <label className={styles.labelmin}>
             Precio Máximo:
             <input
@@ -166,8 +168,7 @@ const Filters = () => {
               placeholder="Máximo"
             />
           </label>
-          <br />
-          <label >
+          <label>
             Categoría:
             <select value={category} onChange={handleCategoryChange}>
               <option value="">Categorías...</option>
@@ -176,7 +177,6 @@ const Filters = () => {
               ))}
             </select>
           </label>
-          <br />
           <label>
             Alfabético:
             <select value={order} onChange={handleOrderChange}>
@@ -186,7 +186,6 @@ const Filters = () => {
               ))}
             </select>
           </label>
-          <br />
           <label>
             Precio:
             <select value={sort} onChange={handleSortChange}>

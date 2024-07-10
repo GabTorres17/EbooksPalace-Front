@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginButton } from '../Login/Login';
 import { Profile } from '../Profile/Profile';
@@ -11,6 +11,7 @@ import './NavBar.css';
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleCartClick = () => {
     if (!isAuthenticated) {
@@ -18,6 +19,10 @@ const NavBar = () => {
     } else {
       navigate('/cartitem');
     }
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
@@ -32,23 +37,26 @@ const NavBar = () => {
           <button>Tienda</button>
         </Link>
       </div>
-      <div className="navbar-left">
-        <Link to="/admin">
-          <button>Administrador</button>
-        </Link>
-      </div>
-      <div>
-        {isAuthenticated ? <>
-          <Profile />
-          <div className='downloads'>
-            <Link to='/downloads'>
-              <button>Mis Libros</button>
-            </Link>
-          </div>
-          <LogoutButton />
-        </> : <LoginButton />}
-      </div>
       <div className="navbar-right">
+        <div className="dropdown">
+          <button className="dropbtn" onClick={toggleMenu}>
+            {isAuthenticated ? <Profile /> : 'Iniciar Sesión'}
+          </button>
+          {menuOpen && (
+            <div className="dropdown-content">
+              <Link to='/downloads'>
+                <button className="menu-item">Mis Libros</button>
+              </Link>
+              <LogoutButton />
+              {isAuthenticated && (
+                <Link to="/admin">
+                  <button className="menu-item">Administrador</button>
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
+        <br/>
         <img
           src={carrito}
           alt="Carrito de Compras"

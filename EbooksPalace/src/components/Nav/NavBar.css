@@ -12,7 +12,6 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .navbar-left,
 .navbar-center,
 .navbar-right {
@@ -50,6 +49,7 @@ body {
 
 .dropdown {
     position: relative;
+    right: 50%;
 }
 
 .dropdown-toggle {
@@ -81,4 +81,19 @@ body {
 
 .dropdown-menu a:hover {
     background-color: #444;
+}
+
+/* Ajustes para centrar los botones */
+/* .dropbtn,
+.menu-item {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 5px;
+} */
+
+.navbar-left button,
+.navbar-right button {
+    margin: 0 10px;
 }

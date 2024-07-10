@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from '../../components/Nav/Nav';
-import './Detail.css';
+import './Detail.css'; // Importar estilos CSS aquí
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../redux/actions';
 
@@ -30,34 +30,25 @@ const Detail = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading book details</div>;
 
-
-
   return (
     <div>
-     
+      <br/>
+      <br/>
+      
       <div className="detalle-producto">
         {info ? (
           <>
             <div className="imagen">
-              <br />
-              <br />
-              <br />
               <img src={info.image} alt={info.name} />
-              <h3>Descripcion:</h3>
+              <h3>Descripción:</h3>
               <p>{info.description}</p>
             </div>
             <div className="info">
-              <br />
-              <h3>Nombre:</h3> 
-              <h4>{info.name}</h4>
-              <h3>Editorial:</h3> 
-              <h4>{info.editorial}</h4>
-              <h3>Categoria:</h3> 
-              <h4>{info.category}</h4>
-              <h3>Autor:</h3> 
-              <h4>{info.author}</h4>
-              <br />
-              {/* <Link to="/cartitem"><button>Add to Cart</button> </Link> */}
+              <h2>{info.name}</h2>
+              <p><strong>Editorial:</strong> {info.editorial}</p>
+              <p><strong>Categoría:</strong> {info.category}</p>
+              <p><strong>Autor:</strong> {info.author}</p>
+              {/* <button onClick={() => addToCart(info)}>Agregar al Carrito</button> */}
             </div>
           </>
         ) : (
