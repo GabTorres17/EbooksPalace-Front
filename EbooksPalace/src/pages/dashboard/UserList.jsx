@@ -9,6 +9,7 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     const data = await getAllUsers();
+    data.sort((a, b) => a.id - b.id);
     setUsers(data);
   };
 

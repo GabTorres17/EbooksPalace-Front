@@ -14,6 +14,8 @@ import PaymentSuccess from './pages/Payment Success/Payment.jsx';
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import BookList from './pages/dashboard/BookList.jsx';
 import UserList from './pages/dashboard/UserList.jsx';
+import DashRoute from './components/privateDash/privateDash.jsx';
+import PrivateBan from './components/privateDash/privateBan.jsx';
 
 function App() {
   return (
@@ -22,7 +24,6 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route path='/home' element={<Home />} />
           <Route path='/detail/:id' element={<Detail />} />
           <Route path='/form' element={<Form />} />
           <Route path='/login' element={<LoginButton />} />
@@ -30,9 +31,15 @@ function App() {
           <Route path='/checkout' element={<PrivateRoute element={<Checkout />} />} />
           <Route path='/downloads' element={<Downloads />} />
           <Route path='/payment-success' element={<PaymentSuccess />} />
-          <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/books" element={<BookList />} />
           <Route path="/admin/users" element={<UserList />} />
+          <Route element={<DashRoute />}>
+            <Route path="/admin" element={<Dashboard />} />
+          </Route>
+          <Route element={<PrivateBan />}>
+            <Route path="/home" element={<Home />} />
+          </Route>
+
         </Routes>
       </div>
     </>
