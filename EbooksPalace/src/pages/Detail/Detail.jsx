@@ -6,6 +6,7 @@ import './Detail.css';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../redux/actions';
 
+
 const Detail = () => {
   const { id } = useParams();
   const [info, setInfo] = useState(null);
@@ -34,7 +35,7 @@ const Detail = () => {
 
   return (
     <div>
-     
+
       <div className="detalle-producto">
         {info ? (
           <>
@@ -48,13 +49,13 @@ const Detail = () => {
             </div>
             <div className="info">
               <br />
-              <h3>Nombre:</h3> 
+              <h3>Nombre:</h3>
               <h4>{info.name}</h4>
-              <h3>Editorial:</h3> 
+              <h3>Editorial:</h3>
               <h4>{info.editorial}</h4>
-              <h3>Categoria:</h3> 
+              <h3>Categoria:</h3>
               <h4>{info.category}</h4>
-              <h3>Autor:</h3> 
+              <h3>Autor:</h3>
               <h4>{info.author}</h4>
               <br />
               {/* <Link to="/cartitem"><button>Add to Cart</button> </Link> */}
@@ -64,6 +65,7 @@ const Detail = () => {
           <div>Loading...</div>
         )}
       </div>
+     
     </div>
   );
 };

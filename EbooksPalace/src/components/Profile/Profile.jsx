@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { setUserProfile } from "../../redux/actions";
-import './Profile.css'; // Importar el archivo CSS creado
+import './Profile.css'; 
 
 export const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
