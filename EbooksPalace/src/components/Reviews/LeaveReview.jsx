@@ -16,7 +16,7 @@ const LeaveReview = () => {
     // Función para cargar el historial de reseñas del usuario actual
     const loadReviewHistory = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/users/${userId}/review`);
+        const response = await axios.get(`https://ebookspalace.onrender.com/users/${userId}/review`);
         const history = response.data;
         setReviewHistory(history);
 
@@ -40,7 +40,7 @@ const LeaveReview = () => {
   // Función para verificar si el usuario tiene un carrito pagado
   const checkPaidCarts = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/paid-cart/${userId}`);
+      const response = await axios.get(`https://ebookspalace.onrender.com/paid-cart/${userId}`);
       const data = response.data;
 
       // Verifica si hay al menos un carrito pagado en la lista
@@ -75,7 +75,7 @@ const LeaveReview = () => {
     try {
       if (reviewId) {
         // Si ya existe una reseña, actualizar en lugar de crear una nueva
-        const response = await axios.put(`http://localhost:3001/users/${userId}/review`, {
+        const response = await axios.put(`https://ebookspalace.onrender.com/users/${userId}/review`, {
           reviewId,
           content: reviewContent,
         });
@@ -85,7 +85,7 @@ const LeaveReview = () => {
         alert('Reseña actualizada con éxito.');
       } else {
         // Si no existe una reseña, crear una nueva
-        const response = await axios.post(`http://localhost:3001/users/${userId}/review`, {
+        const response = await axios.post(`https://ebookspalace.onrender.com/users/${userId}/review`, {
           content: reviewContent,
         });
         if (response.status !== 201) {
@@ -96,7 +96,7 @@ const LeaveReview = () => {
       }
       setError(null); // Reiniciar errores si la operación fue exitosa
       // Recargar el historial de reseñas después de enviar/actualizar
-      const updatedHistory = await axios.get(`http://localhost:3001/users/${userId}/review`);
+      const updatedHistory = await axios.get(`https://ebookspalace.onrender.com/users/${userId}/review`);
       setReviewHistory(updatedHistory.data);
     } catch (error) {
       console.error('Error al enviar la reseña:', error);

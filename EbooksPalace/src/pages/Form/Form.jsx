@@ -113,7 +113,7 @@ const Form = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const response = await axios.post("http://localhost:3001/books", {
+                const response = await axios.post("https://ebookspalace.onrender.com/books", {
                     ...input,
                     image: URL_Image,
                     file: URL_File,
