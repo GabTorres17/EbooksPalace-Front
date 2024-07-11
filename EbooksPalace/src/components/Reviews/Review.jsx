@@ -8,7 +8,7 @@ const ReviewsComponent = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch('http://localhost:3001/reviews');
+        const response = await fetch('https://ebookspalace.onrender.com/reviews');
         if (!response.ok) {
           throw new Error('Error al obtener las reseñas');
         }

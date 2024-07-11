@@ -15,7 +15,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3001/books/${id}`);
+        const { data } = await axios.get(`https://ebookspalace.onrender.com/books/${id}`);
         setInfo(data);
         setLoading(false);
       } catch (error) {
@@ -34,7 +34,7 @@ const Detail = () => {
 
   return (
     <div>
-     
+
       <div className="detalle-producto">
         {info ? (
           <>
@@ -48,13 +48,13 @@ const Detail = () => {
             </div>
             <div className="info">
               <br />
-              <h3>Nombre:</h3> 
+              <h3>Nombre:</h3>
               <h4>{info.name}</h4>
-              <h3>Editorial:</h3> 
+              <h3>Editorial:</h3>
               <h4>{info.editorial}</h4>
-              <h3>Categoria:</h3> 
+              <h3>Categoria:</h3>
               <h4>{info.category}</h4>
-              <h3>Autor:</h3> 
+              <h3>Autor:</h3>
               <h4>{info.author}</h4>
               <br />
               {/* <Link to="/cartitem"><button>Add to Cart</button> </Link> */}

@@ -14,7 +14,7 @@ const Downloads = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/paid-cart/${userId}`);
+                const response = await axios.get(`https://ebookspalace.onrender.com/paid-cart/${userId}`);
                 setBooks(response.data);
             } catch (error) {
                 setError(error);
@@ -25,7 +25,7 @@ const Downloads = () => {
 
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/history/${userId}`);
+                const response = await axios.get(`https://ebookspalace.onrender.com/history/${userId}`);
                 setTransactions(response.data);
             } catch (error) {
                 setError(error);
@@ -40,7 +40,7 @@ const Downloads = () => {
 
     const handleDownloads = async (bookId) => {
         try {
-            const response = await axios.get(`http://localhost:3001/download/${bookId}`, {
+            const response = await axios.get(`https://ebookspalace.onrender.com/download/${bookId}`, {
                 params: { userId },
                 responseType: 'blob'
             });

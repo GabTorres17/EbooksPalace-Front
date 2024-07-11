@@ -47,7 +47,7 @@ const Filters = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/categories');
+        const response = await axios.get('https://ebookspalace.onrender.com/categories');
         setCategories(response.data);
       } catch (err) {
         setError(err.message);
@@ -136,13 +136,13 @@ const Filters = () => {
   return (
     <div className={styles.filtersContainer}>
       <div className={styles.searchFilter}>
-        <div className={styles.filtersContainer2}> 
-        <form className={styles.filterForm}>
-          <label className={styles.searchBar}>
-            Buscar:
-            <input type="text" placeholder="Nombre/Autor/Editorial" value={searchValue} onChange={handleSearchValueChange} />
-          </label>
-        </form>
+        <div className={styles.filtersContainer2}>
+          <form className={styles.filterForm}>
+            <label className={styles.searchBar}>
+              Buscar:
+              <input type="text" placeholder="Nombre/Autor/Editorial" value={searchValue} onChange={handleSearchValueChange} />
+            </label>
+          </form>
         </div>
       </div>
       <div className={styles.sideFilters}>
