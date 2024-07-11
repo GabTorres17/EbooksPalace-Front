@@ -15,32 +15,44 @@ const Filters = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const booksPerPage = 6;
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const params = {
-          page: currentPage,
-          productsByPage: booksPerPage,
-        };
+  const fetchBooks = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const params = {
+        page: currentPage,
+        productsByPage: booksPerPage,
+      };
 
-        if (category) params.category = category;
-        if (order) params.order = order;
-        if (sort) params.sort = sort;
-        if (minimo) params.minimo = minimo;
-        if (maximo) params.maximo = maximo;
-        if (searchValue) params.search = searchValue;
+      if (category) params.category = category;
+      if (order) params.order = order;
+      if (sort) params.sort = sort;
+      if (minimo) params.minimo = minimo;
+      if (maximo) params.maximo = maximo;
+      if (searchValue) params.search = searchValue;
 
-        const response = await axios.get('https://ebookspalace.onrender.com/books', { params });
-        setBooks(response.data.books);
-        setTotalPages(response.data.totalPages);
-      } catch (err) {
-        setError(err.message);
+      const response = await axios.get('https://ebookspalace.onrender.com/books', { params });
+      setBooks(response.data.books);
+      setTotalPages(response.data.totalPages);
+      if (response.data.books.length === 0) {
+        setError('No se encontraron libros.');
       }
-    };
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        setError('No se encontraron libros.');
+      } else {
+        setError('Ocurrió un error al obtener los datos. Inténtalo de nuevo más tarde.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchBooks();
   }, [category, order, sort, minimo, maximo, searchValue, currentPage]);
 
@@ -50,7 +62,7 @@ const Filters = () => {
         const response = await axios.get('https://ebookspalace.onrender.com/categories');
         setCategories(response.data);
       } catch (err) {
-        setError(err.message);
+        setError('Ocurrió un error al obtener las categorías. Inténtalo de nuevo más tarde.');
       }
     };
 
@@ -70,20 +82,20 @@ const Filters = () => {
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
     setCurrentPage(1);
-    setOrder('')
-    setSort('')
+    setOrder('');
+    setSort('');
   };
 
   const handleOrderChange = (e) => {
     setOrder(e.target.value);
     setCurrentPage(1);
-    setSort('')
+    setSort('');
   };
 
   const handleSortChange = (e) => {
     setSort(e.target.value);
     setCurrentPage(1);
-    setOrder('')
+    setOrder('');
   };
 
   const handleMinimoChange = (e) => {
@@ -167,7 +179,7 @@ const Filters = () => {
             />
           </label>
           <br />
-          <label >
+          <label>
             Categoría:
             <select value={category} onChange={handleCategoryChange}>
               <option value="">Categorías...</option>
@@ -199,22 +211,29 @@ const Filters = () => {
         </form>
       </div>
       <div className={styles.books}>
-        {error && <p className={styles.errorMessage}>{error}</p>}
-        <div className={styles.booksGrid}>
-          {books.map((book) => (
-            <ProductCard
-              key={book.id}
-              id={book.id}
-              name={book.name}
-              author={book.author}
-              editorial={book.editorial}
-              price={book.price}
-              category={book.category}
-              image={book.image}
-              description={book.description}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <p className={styles.loadingMessage}>Cargando...</p>
+        ) : error ? (
+          <p className={styles.errorMessage}>{error}</p>
+        ) : books.length === 0 ? (
+          <p className={styles.noBooksMessage}>No se encontraron libros que coincidan con los filtros.</p>
+        ) : (
+          <div className={styles.booksGrid}>
+            {books.map((book) => (
+              <ProductCard
+                key={book.id}
+                id={book.id}
+                name={book.name}
+                author={book.author}
+                editorial={book.editorial}
+                price={book.price}
+                category={book.category}
+                image={book.image}
+                description={book.description}
+              />
+            ))}
+          </div>
+        )}
         <div className={styles.pagination}>
           <button onClick={handlePrevPage} disabled={currentPage === 1} className={styles.pageButton}>
             Anterior
