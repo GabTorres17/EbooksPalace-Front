@@ -1,5 +1,3 @@
-/* Filters.module.css */
-
 .filtersContainer {
   display: flex;
   flex-wrap: wrap;
@@ -20,19 +18,20 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Filters.module.css */
 
 .searchBar {
-  margin-bottom: 1rem; /* Espacio opcional para separar visualmente del siguiente elemento */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.searchBar input[type="text"] {
-  width: 100%; /* Ajusta el ancho del input al 100% del contenedor */
-  padding: 8px; /* Ajusta el padding del input */
-  font-size: 16px; /* Tamaño de fuente */
-  border: 1px solid #ccc; /* Borde del input */
-  border-radius: 4px; /* Borde redondeado */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+.searchBar input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 .sideFilters {
@@ -60,11 +59,12 @@
 
 .books {
   width: 70%;
+  
 }
 
 .booksGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
