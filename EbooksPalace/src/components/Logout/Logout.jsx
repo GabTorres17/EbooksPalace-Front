@@ -9,6 +9,7 @@ export const LogoutButton = () => {
     const { logout } = useAuth0();
 
     const handleLogout = () => {
+        localStorage.removeItem('cart');
         logout({ returnTo: window.location.origin });
         toast.success('¡Se cerró la sesión correctamente!', {
             position: "top-right",
