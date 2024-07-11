@@ -6,6 +6,7 @@ import './Detail.css';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../redux/actions';
 
+
 const Detail = () => {
   const { id } = useParams();
   const [info, setInfo] = useState(null);
@@ -64,6 +65,7 @@ const Detail = () => {
           <div>Loading...</div>
         )}
       </div>
+     
     </div>
   );
 };

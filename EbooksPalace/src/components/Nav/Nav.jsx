@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginButton } from '../Login/Login';
 import { Profile } from '../Profile/Profile';
@@ -11,6 +11,8 @@ import './NavBar.css';
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleCartClick = () => {
     if (!isAuthenticated) {
@@ -19,6 +21,23 @@ const NavBar = () => {
       navigate('/cartitem');
     }
   };
+
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="navbar">
@@ -33,20 +52,29 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="navbar-left">
-        <Link to="/admin">
-          <button>Administrador</button>
-        </Link>
+        {isAuthenticated && (
+          <div className="dropdown" ref={dropdownRef}>
+            <button className="dropdown-toggle" onClick={handleDropdownToggle}>
+              Cuenta
+            </button>
+            {dropdownOpen && (
+              <div className="dropdown-menu">
+                <Link to="/admin">Administrador</Link>
+                <Link to="/downloads">Mis Libros</Link>
+              </div>
+            )}
+          </div>
+        )}
       </div>
       <div>
-        {isAuthenticated ? <>
-          <Profile />
-          <div className='downloads'>
-            <Link to='/downloads'>
-              <button>Mis Libros</button>
-            </Link>
-          </div>
-          <LogoutButton />
-        </> : <LoginButton />}
+        {isAuthenticated ? (
+          <>
+            <Profile />
+            <LogoutButton />
+          </>
+        ) : (
+          <LoginButton />
+        )}
       </div>
       <div className="navbar-right">
         <img
