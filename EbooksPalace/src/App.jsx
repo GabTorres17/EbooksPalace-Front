@@ -31,13 +31,13 @@ function App() {
           <Route path='/checkout' element={<PrivateRoute element={<Checkout />} />} />
           <Route path='/downloads' element={<Downloads />} />
           <Route path='/payment-success' element={<PaymentSuccess />} />
-          <Route path="/admin/books" element={<BookList />}/>
-          <Route path="/admin/users" element={<UserList />}/>
-          <Route element={<DashRoute/>}>
-          <Route path="/admin" element={<Dashboard />}/>
+          <Route path="/admin/books" element={<BookList />} />
+          <Route path="/admin/users" element={<UserList />} />
+          <Route element={<DashRoute />}>
+            <Route path="/admin" element={<Dashboard />} />
           </Route>
-          <Route element={<PrivateBan/>}>
-          <Route path="/home" element={<Home />}/>
+          <Route element={<PrivateBan />}>
+            <Route path="/home" element={<Home />} />
           </Route>
 
         </Routes>
